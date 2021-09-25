@@ -8,8 +8,6 @@ const Blocks = ({ blocks }) => {
   const supportedBlocks = blocks?.filter((p) => p.type !== 'unsupported');
 
   const renderBlocks = supportedBlocks.map((b) => {
-    console.log(b.type);
-    console.log(b.paragraph);
     switch (b.type) {
       case 'paragraph':
         return <TextRenderer key={b.id} content={b.paragraph.text} />;

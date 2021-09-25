@@ -20,7 +20,7 @@ const PostsList = ({ posts, error, isLoadingMore, loadMore, reachedEnd }) => {
       return <p>There was an error while fetching the posts...</p>;
     }
 
-    if (!posts || posts.length === 0) {
+    if (!posts) {
       return <p>It&apos;s looking a bit empty here...</p>;
     }
 
