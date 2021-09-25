@@ -17,7 +17,7 @@ export default function Posts() {
       <Head>
         <title>{name} - Blog</title>
         <meta name="description" content={description} />
-        <meta property="og:title" content={`${name} - all posts`} />
+        <meta property="og:title" content={`${name} - Blog`} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={url + pathname} />
         <meta property="og:image" content={socialImage} />
