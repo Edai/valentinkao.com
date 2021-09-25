@@ -52,7 +52,6 @@ const PostsList = ({ posts, error, isLoadingMore, loadMore, reachedEnd }) => {
         {isLoadingMore && (
           <>
             <ListSkeleton type="posts" />
-            <ListSkeleton type="posts" />
           </>
         )}
       </SimpleGrid>
