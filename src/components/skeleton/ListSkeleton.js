@@ -1,4 +1,4 @@
-import { Box, useColorMode, SkeletonText } from '@chakra-ui/react';
+import { Box, SkeletonText, useColorMode } from '@chakra-ui/react';
 
 const ListSkeleton = ({ type }) => {
   const { colorMode } = useColorMode();
@@ -13,7 +13,7 @@ const ListSkeleton = ({ type }) => {
     border: '1px',
     borderColor: colorMode === 'dark' ? 'transparent' : 'primaryDark',
     borderRadius: 'md',
-    _hover: { textDecoration: 'none', boxShadow: '5px 5px 0 #EB5753' },
+    _hover: { textDecoration: 'none', boxShadow: '5px 5px 0 #63B3ED' },
   };
 
   const defaultSkeletonTextProps = {

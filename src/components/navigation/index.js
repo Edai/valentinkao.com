@@ -1,31 +1,47 @@
-import NextLink from 'next/link';
+import Socials from '@/components/socials';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import {
   Box,
   Container,
   Flex,
+  HStack,
+  IconButton,
   Link,
   List,
   ListItem,
   useColorMode,
-  IconButton,
-  HStack,
+  useMediaQuery,
 } from '@chakra-ui/react';
-import { SunIcon, MoonIcon } from '@chakra-ui/icons';
-import { name } from '@/lib/config';
+import NextLink from 'next/link';
 
 const Navigation = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const [isDisplayingInBrowser, isLargerThan600] = useMediaQuery([
+    '(display-mode: browser)',
+    '(min-width:600px)',
+  ]);
 
   const renderLinks = links.map((l) => (
-    <ListItem key={l.title} fontSize="md" fontFamily="heading" mr={4}>
-      <NextLink href={l.url} passHref>
-        <Link _hover={{ underline: 'none' }}>{l.title}</Link>
-      </NextLink>
+    <ListItem key={l.title} fontSize="md" fontFamily="heading">
+      {!l.isHyperlink ? (
+        <NextLink href={l.url} passHref>
+          <Link _hover={{ underline: 'none' }}>{l.title}</Link>
+        </NextLink>
+      ) : (
+        <Link
+          href={l.url}
+          rel="noopener noreferrer"
+          target="_blank"
+          _hover={{ underline: 'none' }}
+        >
+          {l.title}
+        </Link>
+      )}
     </ListItem>
   ));
 
   return (
-    <Box as="nav" py={[6, 8]} mb={8}>
+    <Box as="nav" py={[3, 6, 8]} mb={[2, 6, 24]}>
       <Container maxW="container.lg">
         <Flex justify="space-between" align="center" px={[null, null, 8]}>
           <NextLink href="/" passHref>
@@ -35,12 +51,13 @@ const Navigation = () => {
               fontWeight={600}
               _hover={{ underline: 'none' }}
             >
-              {name}
+              {'VALENTIN KAO'}
             </Link>
           </NextLink>
           <List>
-            <HStack>
+            <HStack wrap spacing="50px">
               {renderLinks}
+              {isDisplayingInBrowser && isLargerThan600 && <Socials />}
               <ListItem role="listitem">
                 <IconButton
                   role="button"
@@ -64,6 +81,9 @@ const Navigation = () => {
   );
 };
 
-const links = [];
+const links = [
+  { title: 'blog', url: '/blog' },
+  { title: 'about', url: '/about' },
+];
 
 export default Navigation;

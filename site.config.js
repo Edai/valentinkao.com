@@ -1,14 +1,13 @@
 module.exports = {
   // Basic site information (required)
-  name: 'twan.dev',
-  domain: 'twan.dev',
-  url: 'https://twan.dev',
-  description: 'Twan Kruiswijk personal blog about life, music, code and more.',
-  fathomCode: 'TBSAIDMS',
+  name: 'valentinkao.com',
+  domain: 'valentinkao.com',
+  url: 'https://www.valentinkao.com',
+  description: 'Valentin Kao personal blog about life, music, code and more.',
+  fathomCode: '',
 
   // SEO specific (optional)
-  defaultSocialImage:
-    'https://res.cloudinary.com/twankruiswijk/image/upload/v1624446915/twan-dev-social_zzbzzv.jpg',
+  defaultSocialImage: '',
 
   /* 
     Social media URLS (optional)
@@ -25,17 +24,17 @@ module.exports = {
     },
     {
       name: 'Twitter',
-      url: 'https://twitter.com/twankrui',
+      url: 'https://twitter.com/kaovalentin',
       icon: 'SiTwitter',
     },
     {
       name: 'Instagram',
-      url: 'https://instagram.com/twankrui',
+      url: 'https://instagram.com/valyuching',
       icon: 'SiInstagram',
     },
     {
       name: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/twan-kruiswijk-bb853a71/',
+      url: 'https://www.linkedin.com/in/valentinkao/',
       icon: 'SiLinkedin',
     },
     {
@@ -44,18 +43,13 @@ module.exports = {
       icon: 'SiYoutube',
     },
     {
-      name: 'TikTok',
-      url: '',
-      icon: 'SiTiktok',
-    },
-    {
-      name: 'Medium',
-      url: '',
-      icon: 'SiMedium',
+      name: 'GitHub',
+      url: 'https://www.github.com/edai',
+      icon: 'SiGithub',
     },
     {
       name: 'Twitch',
-      url: 'https://twitch.tv/twankrui',
+      url: 'https://twitch.tv/edailive',
       icon: 'SiTwitch',
     },
   ],

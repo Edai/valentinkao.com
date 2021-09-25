@@ -1,22 +1,41 @@
+import Blocks from '@/components/blocks';
+import PostTags from '@/components/posts/PostTags';
+import MainLayout from '@/layouts/MainLayout';
+import { socialImage, url } from '@/lib/config';
+import { getPostBySlug, getPosts } from '@/lib/notion';
+import timeago from '@/lib/timeago';
+import { AspectRatio, Container, Heading, HStack } from '@chakra-ui/react';
 import Head from 'next/head';
 import Image from 'next/image';
-import { getPosts, getPostBySlug } from '@/lib/notion';
-import { AspectRatio, Container, Heading } from '@chakra-ui/react';
-import { socialImage, url } from '@/lib/config';
 
-import MainLayout from '@/layouts/MainLayout';
-import Blocks from '@/components/blocks';
+const renderTime = (date) => {
+  const diffNow = Date.now() - date.getTime();
 
+  if (diffNow >= 86400000 * 31) {
+    return timeago(date, { format: 'long' });
+  }
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
 export default function Post({ post }) {
   const { pageInfo, blocks } = post;
-  const { entry, slug, summary, image, social_image } = pageInfo.properties;
+  const { entry, slug, summary, image, social_image, created, categories } =
+    pageInfo.properties;
 
-  const titleContent = entry.title[0].text.content;
-  const summaryContent = summary.rich_text[0].text.content;
-  const slugContent = slug.rich_text[0].plain_text;
+  const titleContent = entry.title[0]?.text.content || 'super title';
+  const summaryContent =
+    summary.rich_text[0]?.text.content || 'default content';
+  const slugContent = slug.rich_text[0]?.plain_text || 'default-slug';
+  const createdTime =
+    created && created.created_time
+      ? new Date(created.created_time)
+      : new Date();
 
   const renderFeaturedImage = () => {
-    if (!image) {
+    if (!image || !image.url) {
       return null;
     }
 
@@ -54,15 +73,19 @@ export default function Post({ post }) {
       </Head>
 
       <Container maxW="container.lg" mt={[8, 16]} mb={[8, 16]}>
-        <Heading
-          as="h1"
-          mb={[4, 8, 16]}
-          fontSize={['2xl', '4xl', '5xl']}
-          px={[null, null, 16]}
-        >
+        <Heading as="h1" mb={[4, 8, 8]} fontSize={['2xl', '4xl', '5xl']}>
           {titleContent}
         </Heading>
-
+        <HStack mb={[4, 8, 8]} inline={true}>
+          <Heading as="h4" fontSize="xsmall">
+            {`${renderTime(createdTime)} - `}
+          </Heading>
+          <PostTags
+            mb={[4, 8, 16]}
+            px={[null, null, 16]}
+            tags={categories?.multi_select}
+          />
+        </HStack>
         {renderFeaturedImage()}
       </Container>
 

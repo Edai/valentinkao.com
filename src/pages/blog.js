@@ -1,11 +1,10 @@
+import PostsList from '@/components/posts/PostsList';
+import MainLayout from '@/layouts/MainLayout';
+import { description, name, socialImage, url } from '@/lib/config';
+import { usePaginatePosts } from '@/lib/posts';
+import { Box, Container } from '@chakra-ui/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { Box, Container, Flex, Heading } from '@chakra-ui/react';
-import { name, description, url, socialImage } from '@/lib/config';
-import { usePaginatePosts } from '@/lib/posts';
-
-import MainLayout from '@/layouts/MainLayout';
-import PostsList from '@/components/posts/PostsList';
 
 export default function Posts() {
   const { pathname } = useRouter();
@@ -16,7 +15,7 @@ export default function Posts() {
   return (
     <MainLayout>
       <Head>
-        <title>{name} - all posts</title>
+        <title>{name} - Blog</title>
         <meta name="description" content={description} />
         <meta property="og:title" content={`${name} - all posts`} />
         <meta property="og:description" content={description} />
@@ -26,12 +25,6 @@ export default function Posts() {
 
       <Container maxW="container.lg" pb={16}>
         <Box mb={[8, 16]}>
-          <Flex align="center" justify="space-between" px={[4, 8]} mb={6}>
-            <Heading as="h2" fontSize="xl">
-              All posts
-            </Heading>
-          </Flex>
-
           <PostsList
             posts={posts}
             error={error}

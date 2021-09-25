@@ -1,5 +1,5 @@
 import { postImageSource } from '@/lib/config';
-import { Box, Image, Text, Link, useColorMode } from '@chakra-ui/react';
+import { Box, Image, Link, Text, useColorMode } from '@chakra-ui/react';
 
 const TextRenderer = ({ content, plain }) => {
   const { colorMode } = useColorMode();

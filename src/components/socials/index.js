@@ -1,15 +1,16 @@
 import { socials } from '@/lib/config';
-import { Icon, List, Link, ListItem, HStack } from '@chakra-ui/react';
 import { QuestionOutlineIcon } from '@chakra-ui/icons';
+import { HStack, Icon, Link, List, ListItem } from '@chakra-ui/react';
 import {
   SiFacebook,
-  SiTwitter,
+  SiGithub,
   SiInstagram,
   SiLinkedin,
-  SiYoutube,
-  SiTiktok,
   SiMedium,
+  SiTiktok,
   SiTwitch,
+  SiTwitter,
+  SiYoutube,
 } from 'react-icons/si';
 
 const Socials = () => {
@@ -31,6 +32,8 @@ const Socials = () => {
         return SiMedium;
       case 'SiTwitch':
         return SiTwitch;
+      case 'SiGithub':
+        return SiGithub;
       default:
         return QuestionOutlineIcon;
     }

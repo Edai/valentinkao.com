@@ -5,10 +5,11 @@ const Blocks = ({ blocks }) => {
   if (!blocks) {
     return <p>No blocks available</p>;
   }
-
   const supportedBlocks = blocks?.filter((p) => p.type !== 'unsupported');
 
   const renderBlocks = supportedBlocks.map((b) => {
+    console.log(b.type);
+    console.log(b.paragraph);
     switch (b.type) {
       case 'paragraph':
         return <TextRenderer key={b.id} content={b.paragraph.text} />;
@@ -22,7 +23,7 @@ const Blocks = ({ blocks }) => {
             mt={[8, 12]}
             mb={[2, 4]}
           >
-            {b.heading_1.text[0].text.content}
+            {b.heading_1?.text[0]?.text.content}
           </Heading>
         );
       case 'heading_2':
@@ -35,7 +36,7 @@ const Blocks = ({ blocks }) => {
             mt={[8, 12]}
             mb={[2, 4]}
           >
-            {b.heading_2.text[0].text.content}
+            {b.heading_2?.text[0]?.text.content}
           </Heading>
         );
       case 'heading_3':
@@ -48,7 +49,7 @@ const Blocks = ({ blocks }) => {
             mt={[6, 8]}
             mb={4}
           >
-            {b.heading_3.text[0].text.content}
+            {b.heading_3?.text[0]?.text.content}
           </Heading>
         );
       case 'bulleted_list_item':

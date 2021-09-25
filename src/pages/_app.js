@@ -1,37 +1,10 @@
+import theme from '@/theme';
+import { ChakraProvider } from '@chakra-ui/react';
 import '@fontsource/montserrat';
 import '@fontsource/noto-serif';
-
-import { useEffect } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import * as Fathom from 'fathom-client';
-import { ChakraProvider } from '@chakra-ui/react';
-import theme from '@/theme';
-import { domain, fathomCode } from '@/lib/config';
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!fathomCode || fathomCode === '') {
-      return;
-    }
-
-    Fathom.load(fathomCode, {
-      includedDomains: [domain],
-    });
-
-    function onRouteChangeComplete() {
-      Fathom.trackPageview();
-    }
-
-    router.events.on('routeChangeComplete', onRouteChangeComplete);
-
-    return () => {
-      router.events.off('routeChangeComplete', onRouteChangeComplete);
-    };
-  }, [router]);
-
   return (
     <ChakraProvider theme={theme}>
       <Head>

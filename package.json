@@ -1,7 +1,7 @@
 {
-  "name": "blion",
+  "name": "valentinkao.com",
   "version": "1.0.0",
-  "description": "The Publisher framework is a NextJS application to use as a template to run a blog with Notion as your CMS",
+  "description": "NextJS portfolio",
   "keywords": [
     "nextjs",
     "notion",
@@ -9,15 +9,15 @@
     "blog"
   ],
   "bugs": {
-    "url": "https://github.com/twankruiswijk/The-publisher-framework/issues"
+    "url": "https://github.com/Edai/valentinkao.com"
   },
   "author": {
-    "name": "Twan Kruiswijk",
-    "url": "https://twan.dev"
+    "name": "Valentin Kao",
+    "url": "https://www.valentinkao.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/twankruiswijk/The-publisher-framework"
+    "url": "https://github.com/Edai/valentinkao.com"
   },
   "private": true,
   "scripts": {

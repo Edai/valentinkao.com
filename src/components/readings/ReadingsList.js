@@ -1,15 +1,14 @@
-import NextLink from 'next/link';
+import ListSkeleton from '@/components/skeleton/ListSkeleton';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
   Button,
-  Heading,
   Flex,
+  Heading,
   Link,
   SimpleGrid,
   useColorMode,
 } from '@chakra-ui/react';
-import { ChevronRightIcon } from '@chakra-ui/icons';
-
-import ListSkeleton from '@/components/skeleton/ListSkeleton';
+import NextLink from 'next/link';
 
 const ReadingsList = ({
   readings,
@@ -65,7 +64,7 @@ const ReadingsList = ({
           mt={[4, 8]}
           size="lg"
           fontFamily="heading"
-          _hover={{ boxShadow: isLoadingMore ? 'unset' : '4px 4px 0 #EB5753' }}
+          _hover={{ boxShadow: isLoadingMore ? 'unset' : '4px 4px 0 #63B3ED' }}
         >
           {isLoadingMore ? 'Loading...' : 'Load more'}
         </Button>
@@ -89,7 +88,7 @@ const PostItem = ({ title, url }) => {
         border="1px"
         borderColor={colorMode === 'dark' ? 'transparent' : 'primaryDark'}
         borderRadius="lg"
-        _hover={{ textDecoration: 'none', boxShadow: '5px 5px 0 #EB5753' }}
+        _hover={{ textDecoration: 'none', boxShadow: '5px 5px 0 #63B3ED' }}
       >
         <Flex justify="space-between" align="center">
           <Heading as="h2" fontSize="base">
