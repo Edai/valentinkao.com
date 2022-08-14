@@ -5,7 +5,7 @@ const Footer = () => (
     <Container maxW="container.lg">
       <Box px={[null, null, 8]}>
         <Link href="https://www.linkedin.com/in/valentinkao">
-          © Valentin Kao + {new Date().getFullYear()}
+          © Valentin Kao - {new Date().getFullYear()}
         </Link>
       </Box>
     </Container>
