@@ -55,7 +55,12 @@ export default function Post({ post }) {
       </AspectRatio>
     );
   };
-
+  let likeButton;
+  try {
+    likeButton = <LikeButton namespace="blog-post" id={slugContent} />;
+  } catch (err) {
+    likeButton = <div />;
+  }
   return (
     <MainLayout>
       <Head>
@@ -71,12 +76,11 @@ export default function Post({ post }) {
           content={social_image ? social_image.url : socialImage}
         />
       </Head>
-
       <Container maxW="container.lg" mt={[8, 16]} mb={[8, 16]}>
         <Heading as="h1" mb={[4, 8, 8]} fontSize={['2xl', '4xl', '5xl']}>
           {titleContent}
         </Heading>
-        <HStack mb={[4, 8, 8]} inline={true}>
+        <HStack mb={[4, 8, 8]}>
           <Heading as="h4" fontSize="xsmall">
             {`${renderTime(createdTime)} - `}
           </Heading>
@@ -88,9 +92,9 @@ export default function Post({ post }) {
         </HStack>
         {renderFeaturedImage()}
       </Container>
-
       <Container maxW="container.md" px={[5, 6, 16]} pb={16}>
         <Blocks blocks={blocks} />
+        {likeButton}
       </Container>
     </MainLayout>
   );

@@ -23,16 +23,6 @@ module.exports = {
       icon: 'SiFacebook',
     },
     {
-      name: 'Twitter',
-      url: 'https://twitter.com/kaovalentin',
-      icon: 'SiTwitter',
-    },
-    {
-      name: 'Instagram',
-      url: 'https://instagram.com/valyuching',
-      icon: 'SiInstagram',
-    },
-    {
       name: 'LinkedIn',
       url: 'https://www.linkedin.com/in/valentinkao/',
       icon: 'SiLinkedin',
@@ -52,6 +42,11 @@ module.exports = {
       url: 'https://twitch.tv/edailive',
       icon: 'SiTwitch',
     },
+    { 
+      name: "Medium",
+      url: 'https://medium.com/@valentinkao',
+      icon: "SiMedium"
+    }
   ],
 
   /* 

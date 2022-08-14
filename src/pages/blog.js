@@ -5,13 +5,15 @@ import { usePaginatePosts } from '@/lib/posts';
 import { Box, Container } from '@chakra-ui/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import React from 'react';
 
 export default function Posts() {
-  const { pathname } = useRouter();
+  const router = useRouter();
+  const { pathname } = router;
 
   const { posts, error, isLoadingMore, size, setSize, reachedEnd } =
     usePaginatePosts();
-
+  
   return (
     <MainLayout>
       <Head>

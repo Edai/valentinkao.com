@@ -82,8 +82,8 @@ const Navigation = () => {
 };
 
 const links = [
-  { title: 'blog', url: '/blog' },
-  { title: 'about', url: '/about' },
+  // { title: 'blog', url: '/blog' },
+  // { title: 'about', url: '/about' },
 ];
 
 export default Navigation;

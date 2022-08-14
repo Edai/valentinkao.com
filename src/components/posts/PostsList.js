@@ -104,7 +104,7 @@ const PostItem = ({ slug, title, summary, createdTime, categories }) => {
         borderRadius="md"
         _hover={{ textDecoration: 'none', boxShadow: '5px 5px 0 #63B3ED' }}
       >
-        <HStack spacing={2} inline={true}>
+        <HStack spacing={2}>
           <Heading as="h2" mb={[2, 4, 2]} fontSize="xl">
             {title}
           </Heading>

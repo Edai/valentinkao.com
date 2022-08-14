@@ -32,6 +32,7 @@
     "@emotion/styled": "^11",
     "@fontsource/montserrat": "^4.4.5",
     "@fontsource/noto-serif": "^4.4.5",
+    "@lyket/react": "^1.4.8",
     "@notionhq/client": "^0.1.8",
     "fathom-client": "^3.0.0",
     "framer-motion": "^4",
