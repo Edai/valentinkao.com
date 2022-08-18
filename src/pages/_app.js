@@ -4,6 +4,7 @@ import '@fontsource/montserrat';
 import '@fontsource/noto-serif';
 import { Provider } from '@lyket/react';
 import Head from 'next/head';
+import Script from 'next/script';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -32,6 +33,16 @@ function MyApp({ Component, pageProps }) {
             href="/favicons/favicon-16x16.png"
           />
         </Head>
+        <Script
+          id="Adsense-id"
+          data-ad-client="ca-pub-4563670706022763"
+          async
+          strategy="beforeInteractive"
+          onError={(e) => {
+            console.error('Script failed to load', e);
+          }}
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+        />
         <Component {...pageProps} />
       </Provider>
     </ChakraProvider>
