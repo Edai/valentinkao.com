@@ -19,14 +19,22 @@ export default function AboutMe({ me }) {
         <meta property="og:url" content={url} />
         <meta property="og:image" content={socialImage} />
       </Head>
-
       <Container maxW="container.md" align="center">
-        <Image
-          src={'/images/valentinkao.png'}
-          alt="Me"
-          width="250"
-          height="250"
-        />
+        <div
+          style={{
+            borderRadius: '25px',
+            overflow: 'hidden',
+            maxWidth: 150,
+            maxHeight: 150,
+          }}
+        >
+          <Image
+            src={'https://avatars.githubusercontent.com/u/11737262'}
+            alt="Me"
+            width="150"
+            height="150"
+          />
+        </div>
       </Container>
       <Container maxW="container.md" px={[5, 6, 8]} pb={8}>
         <Blocks blocks={blocks} />
