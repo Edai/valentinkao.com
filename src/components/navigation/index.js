@@ -41,7 +41,7 @@ const Navigation = () => {
   ));
 
   return (
-    <Box as="nav" py={[3, 6, 8]} mb={[2, 6, 24]}>
+    <Box as="nav" py={[3, 6, 8]} mb={[2, 6, 8]}>
       <Container maxW="container.lg">
         <Flex justify="space-between" align="center" px={[null, null, 8]}>
           <NextLink href="/" passHref>
@@ -82,8 +82,8 @@ const Navigation = () => {
 };
 
 const links = [
-  // { title: 'blog', url: '/blog' },
-  // { title: 'about', url: '/about' },
+  { title: 'about', url: '/' },
+  { title: 'blog', url: '/blog' },
 ];
 
 export default Navigation;

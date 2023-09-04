@@ -1,7 +1,10 @@
 import TextRenderer from '@/components/blocks/TextRenderer';
 import { Heading } from '@chakra-ui/react';
+import { useColorMode } from '@chakra-ui/react';
 
 const Blocks = ({ blocks }) => {
+  const { colorMode } = useColorMode();
+
   if (!blocks) {
     return <p>No blocks available</p>;
   }
@@ -62,6 +65,20 @@ const Blocks = ({ blocks }) => {
             <TextRenderer content={b.numbered_list_item.text} plain />
           </li>
         );
+      case 'callout':
+        return (
+          <div
+            key={b.id}
+            style={{
+              padding: '1rem',
+              backgroundColor: colorMode === 'dark' ? '#1c1c1c' : '#f1f1ef',
+            }}
+          >
+            <TextRenderer content={b.callout.text} />
+          </div>
+        );
+      case 'image':
+        return;
       default:
         return (
           <div key={b.id} w>

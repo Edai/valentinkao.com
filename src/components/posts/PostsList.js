@@ -67,7 +67,7 @@ const PostsList = ({ posts, error, isLoadingMore, loadMore, reachedEnd }) => {
           size="lg"
           fontFamily="heading"
           _hover={{
-            boxShadow: isLoadingMore ? 'unset' : '4px 4px 0 #90CDF4',
+            boxShadow: isLoadingMore ? 'unset' : '2px 2px 0 #90CDF4',
           }}
         >
           {isLoadingMore ? 'Loading...' : 'Load more'}
@@ -81,12 +81,7 @@ export default PostsList;
 
 const PostItem = ({ slug, title, summary, createdTime, categories }) => {
   const { colorMode } = useColorMode();
-  const renderTime = (date) => {
-    const diffNow = Date.now() - date.getTime();
-
-    if (diffNow >= 86400000 * 31) {
-      return timeago(createdTime, { format: 'long' });
-    }
+  const renderTime = () => {
     return createdTime.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
@@ -97,26 +92,23 @@ const PostItem = ({ slug, title, summary, createdTime, categories }) => {
     <NextLink href={`/post/${slug.plain_text}`} passHref>
       <Link
         px={6}
-        py={8}
+        py={6}
         bg={colorMode === 'dark' ? 'primaryGray' : 'transparent'}
         border="1px"
         borderColor={colorMode === 'dark' ? 'transparent' : 'primaryDark'}
         borderRadius="md"
         _hover={{ textDecoration: 'none', boxShadow: '5px 5px 0 #63B3ED' }}
       >
+        <Heading as="h4" mb={[2, 4, 6]} fontSize="xsmall" fontWeight={10}>
+          {`${renderTime()}`}
+        </Heading>
         <HStack spacing={2}>
           <Heading as="h2" mb={[2, 4, 2]} fontSize="xl">
-            {title}
+            {`${title}`}
           </Heading>
           <PostTags tags={categories} />
         </HStack>
-        <Heading as="h4" mb={[2, 4, 6]} fontSize="xsmall">
-          {`${renderTime(createdTime)}`}
-        </Heading>
         <TextRenderer content={summary} />
-        <Heading as="h4" pt={10} fontSize="xsmall">
-          {`Read more >>>`}
-        </Heading>
       </Link>
     </NextLink>
   );
