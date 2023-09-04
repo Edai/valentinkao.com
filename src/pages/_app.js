@@ -5,6 +5,7 @@ import '@fontsource/noto-serif';
 import { Provider } from '@lyket/react';
 import Head from 'next/head';
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/react';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -43,7 +44,7 @@ function MyApp({ Component, pageProps }) {
           }}
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         />
-        <Component {...pageProps} />
+        <Component {...pageProps} /> <Analytics />
       </Provider>
     </ChakraProvider>
   );
