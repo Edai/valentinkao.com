@@ -1,6 +1,7 @@
 import TextRenderer from '@/components/blocks/TextRenderer';
 import { Heading } from '@chakra-ui/react';
 import { useColorMode } from '@chakra-ui/react';
+import Image from 'next/image';
 
 const Blocks = ({ blocks }) => {
   const { colorMode } = useColorMode();
@@ -65,6 +66,7 @@ const Blocks = ({ blocks }) => {
             <TextRenderer content={b.numbered_list_item.text} plain />
           </li>
         );
+      case 'quote':
       case 'callout':
         return (
           <div
@@ -74,11 +76,16 @@ const Blocks = ({ blocks }) => {
               backgroundColor: colorMode === 'dark' ? '#1c1c1c' : '#f1f1ef',
             }}
           >
-            <TextRenderer content={b.callout.text} />
+            <TextRenderer content={b.callout?.text || b.quote?.text} />
           </div>
         );
       case 'image':
-        return;
+        return <Image src={b.image?.external?.url}
+          width={0}
+          height={0}
+          sizes="100vw"
+          style={{ width: '100%', height: 'auto' }}
+        />
       default:
         return (
           <div key={b.id} w>

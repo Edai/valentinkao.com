@@ -2,7 +2,6 @@ import theme from '@/theme';
 import { ChakraProvider } from '@chakra-ui/react';
 import '@fontsource/montserrat';
 import '@fontsource/noto-serif';
-import { Provider } from '@lyket/react';
 import Head from 'next/head';
 import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/react';
@@ -10,7 +9,6 @@ import { Analytics } from '@vercel/analytics/react';
 function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme}>
-      <Provider apiKey="pt_1fe5e7432d627fc70f3a6d42aab895">
         <Head>
           <meta property="og:type" content="website" />
           <meta name="twitter:card" content="summary_large_image" />
@@ -45,7 +43,6 @@ function MyApp({ Component, pageProps }) {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         />
         <Component {...pageProps} /> <Analytics />
-      </Provider>
     </ChakraProvider>
   );
 }
