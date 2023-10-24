@@ -80,12 +80,7 @@ const Blocks = ({ blocks }) => {
           </div>
         );
       case 'image':
-        return <Image src={b.image?.external?.url}
-          width={0}
-          height={0}
-          sizes="100vw"
-          style={{ width: '100%', height: 'auto' }}
-        />
+       return <img src={b.image?.external?.url} alt="" title="" />
       default:
         return (
           <div key={b.id} w>
