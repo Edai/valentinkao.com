@@ -20,9 +20,10 @@ export default function Page() {
           </TextComponent>
           <br />
           <TextComponent>
-            When I am not coding, I love traveling around the world —I've
-            checked off 15 countries so far! I also love weight lifting at home
-            and I have recently learnt how to ride an eletric unicycle!
+            When I am not coding, I love traveling around the world — I've
+            checked off 15 countries so far! I also love bouldering, weight
+            lifting at home, and I have recently learnt how to ride an electric
+            unicycle!
           </TextComponent>
           <br />
           <a href="mailto:me@valentinkao.com">
