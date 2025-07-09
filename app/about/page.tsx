@@ -8,7 +8,7 @@ const ABOUT_CONTENT = {
   hero: {
     title: "👋 I'm Valentin Kao",
     description1:
-      'Senior Software Engineer with a focus on AWS cloud solutions, serverless backends, and AI-driven applications. I architect and deliver robust, scalable platforms—leveraging AWS (Lambda, DynamoDB, API Gateway), Node.js, and Next.js to solve real business problems.',
+      'Senior Software Engineer with a focus on AWS cloud solutions, serverless backends, and AI-driven applications. I architect and deliver robust, scalable platforms, leveraging AWS (Lambda, DynamoDB, API Gateway), Node.js, and Next.js to solve real business problems.',
     description2:
       'Originally from Toulouse, France 🇫🇷, I help teams move fast by integrating AI (custom assistants, code reviewers, simulators) and building future-proof cloud infrastructure.',
   },
@@ -51,18 +51,18 @@ const ABOUT_CONTENT = {
       icon: '🚀',
       title: 'AI Application Development',
       description:
-        'Founder of GitReviewed—a SaaS with AI-driven code reviews. Deep experience designing, building, and scaling custom AI assistants, conversational agents, and developer tools.',
+        'Founder of GitReviewed, a SaaS with AI-driven code reviews. Deep experience designing, building, and scaling custom AI assistants, conversational agents, and developer tools.',
     },
   },
   personal: {
     title: '🌱 Outside of Tech',
     description:
-      'When I’m not building software, I’m recharging with Muay Thai 🥊, lifting, or running. Staying active keeps my mind sharp and creative.',
+      'When I’m not building software, I’m recharging with Muay Thai 🥊, lifting, or running.',
   },
   callToAction: {
     title: 'Let’s Build Smarter Apps',
     description:
-      'Ready to scale up your business with modern cloud and AI solutions? I’m open to new projects—let’s turn your next idea into reality.',
+      'Ready to scale up your business with modern cloud and AI solutions? I’m open to new projects, let’s turn your next idea into reality.',
     primaryButton: 'Contact Me',
     secondaryButton: 'See My Work →',
   },
