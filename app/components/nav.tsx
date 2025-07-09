@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import Avatar from '../avatar.jpg';
+import Avatar from '../avatar.png';
 import Divider from './divider';
 
 const navItems = {
