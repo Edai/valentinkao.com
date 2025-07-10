@@ -139,32 +139,19 @@ export default function Page() {
           {projects.map((project, index) => (
             <div
               key={project.name}
-              className={`flex flex-col lg:flex-row items-center gap-6 p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 hover:shadow-lg dark:hover:shadow-gray-900/25 transition-shadow ${
-                index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+              className={`p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 hover:shadow-lg dark:hover:shadow-gray-900/25 transition-shadow ${
+                project.frame
+                  ? 'flex flex-col gap-6'
+                  : `flex flex-col lg:flex-row items-center gap-6 ${
+                      index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+                    }`
               }`}
             >
-              <div className="flex-shrink-0">
-                {project.image && (
-                  <Image
-                    src={project.image}
-                    alt={project.name}
-                    width={280}
-                    height={280}
-                    className="rounded-lg object-cover shadow-md dark:shadow-gray-900/50"
-                  />
-                )}
-                {project.frame && (
-                  <Suspense
-                    fallback={
-                      <div className="aspect-video w-full max-w-md bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse"></div>
-                    }
-                  >
-                    {project.frame}
-                  </Suspense>
-                )}
-              </div>
-
-              <div className="flex-1 text-center lg:text-left">
+              <div
+                className={
+                  project.frame ? 'w-full' : 'flex-1 text-center lg:text-left'
+                }
+              >
                 <div className="flex flex-col lg:flex-row lg:items-center gap-2 mb-3">
                   <Link href={project.link} className="group">
                     <h3 className="font-bold text-xl text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -192,6 +179,31 @@ export default function Page() {
                   </Link>
                 </div>
               </div>
+              {project.image && !project.frame && (
+                <div className="flex-shrink-0">
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    width={280}
+                    height={280}
+                    className="rounded-lg object-cover shadow-md dark:shadow-gray-900/50"
+                  />
+                </div>
+              )}
+
+              {project.frame && (
+                <div className="w-full">
+                  <Suspense
+                    fallback={
+                      <div className="aspect-video w-full bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse"></div>
+                    }
+                  >
+                    <div className="aspect-video w-full max-w-4xl mx-auto">
+                      {project.frame}
+                    </div>
+                  </Suspense>
+                </div>
+              )}
             </div>
           ))}
         </div>

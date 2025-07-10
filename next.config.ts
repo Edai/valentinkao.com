@@ -29,7 +29,7 @@ const ContentSecurityPolicy = `
     media-src 'none';
     connect-src *;
     font-src 'self' data:;
-    frame-src 'self' *.codesandbox.io vercel.live;
+    frame-src 'self' *.codesandbox.io vercel.live *.youtube.com youtube.com;
 `;
 
 const securityHeaders = [
