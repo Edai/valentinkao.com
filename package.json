@@ -18,7 +18,7 @@
     "@vercel/speed-insights": "^1.2.0",
     "dotenv": "^17.1.0",
     "geist": "^1.4.2",
-    "next": "^15.3.5",
+    "next": "15.3.8",
     "next-auth": "^4.24.11",
     "next-mdx-remote": "^5.0.0",
     "postcss": "^8.5.6",
