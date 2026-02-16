@@ -22,11 +22,16 @@ export default function BlogPage() {
   return (
     <section>
       <p className="mb-8">
-        This is a collection of ideas, stories, tutorials, and whatever
-        come to my mind. Better sharing them than keeping them into a Notion
-        privately.
+        This is a collection of ideas, stories, tutorials, and whatever come to
+        my mind. Better sharing them than keeping them into a Notion privately.
       </p>
       {allBlogs
+        .filter((post) => post.metadata.publishedAt !== undefined)
+        .filter((post) => post.metadata.publishedAt !== 'YYYY-MM-DD')
+        .filter(
+          (post) =>
+            Date.now() - new Date(post.metadata.publishedAt).getTime() > 0,
+        )
         .sort((a, b) => {
           if (
             new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)

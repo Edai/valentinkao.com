@@ -75,9 +75,9 @@ trim_trailing_blank_lines() {
   echo "$body"
 }
 
-escape_single_quotes() {
+escape_double_quotes() {
   local text="$1"
-  echo "$text" | sed "s/'/\\\\'/g"
+  echo "$text" | sed 's/"/\\"/g'
 }
 
 synced=0
@@ -118,16 +118,16 @@ for filepath in "$OBSIDIAN_DIR"/*.md; do
 
   summary=$(generate_summary "$body")
 
-  escaped_title=$(escape_single_quotes "$title")
-  escaped_summary=$(escape_single_quotes "$summary")
+  escaped_title=$(escape_double_quotes "$title")
+  escaped_summary=$(escape_double_quotes "$summary")
 
   slug="${filename%.md}"
   output_file="${CONTENT_DIR}/${slug}.mdx"
 
   new_content="---
-title: '${escaped_title}'
+title: \"${escaped_title}\"
 publishedAt: '${published_date}'
-summary: '${escaped_summary}'
+summary: \"${escaped_summary}\"
 ---
 
 ${body}

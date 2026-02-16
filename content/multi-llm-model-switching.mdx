@@ -1,22 +1,22 @@
 ---
-title: 'Claude Opus 4.6 Just Landed in Bedrock. Can Your AI Product Actually Use It?'
+title: "Claude Opus 4.6 Just Landed in Bedrock. Can Your AI Product Actually Use It?"
 publishedAt: '2026-02-10'
-summary: 'Claude Opus 4.6 just landed on AWS Bedrock. In 3 days, OpenAI is deprecating GPT-5, GPT-4o, GPT-4.1, GPT-4.1 mini, and o4-mini from ChatGPT.  '
+summary: "Claude Opus 4.6 just landed on AWS Bedrock. In 3 days, OpenAI is deprecating GPT-5, GPT-4o, GPT-4.1, GPT-4.1 mini, and o4-mini from ChatGPT."
 ---
 
-Claude Opus 4.6 just landed on AWS Bedrock. In 3 days, OpenAI is deprecating GPT-5, GPT-4o, GPT-4.1, GPT-4.1 mini, and o4-mini from ChatGPT.  
-  
-New models arrive. Old models disappear. If your AI product can't swap models fast, you've got a problem on both ends.  
-  
-In the past, I built an AI assistant on a smart building platform using Bedrock Agents with Claude. From day one, one architectural decision changed everything:  
-Abstract every LLM call behind an interface. No hardcoded model IDs. No vendor lock-in. No scattered API calls across the codebase.  
-  
-When a new model drops, one config change. When a model gets deprecated, same thing. No code rewrite.  
-  
+Claude Opus 4.6 just landed on AWS Bedrock. In 3 days, OpenAI is deprecating GPT-5, GPT-4o, GPT-4.1, GPT-4.1 mini, and o4-mini from ChatGPT.
+
+New models arrive. Old models disappear. If your AI product can't swap models fast, you've got a problem on both ends.
+
+In the past, I built an AI assistant on a smart building platform using Bedrock Agents with Claude. From day one, one architectural decision changed everything:
+Abstract every LLM call behind an interface. No hardcoded model IDs. No vendor lock-in. No scattered API calls across the codebase.
+
+When a new model drops, one config change. When a model gets deprecated, same thing. No code rewrite.
+
 On a separate project, a code review tool, I took it further. Multi-LLM routing by task complexity. Syntax checks go to a lighter model. Complex logic review goes to the heavy hitter.  
-Result: 40% cost reduction. Same quality.  
-  
-Still hardcoding model IDs across your codebase? That's not stability. That's technical debt with a countdown timer.  
-  
+Result: 40% cost reduction. Same quality.
+
+Still hardcoding model IDs across your codebase? That's not stability. That's technical debt with a countdown timer.
+
 What model are you running in production, and how fast could you switch if it got deprecated tomorrow?
 

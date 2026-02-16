@@ -42,17 +42,23 @@ function extractTweetIds(content) {
 
 function getMDXData(dir) {
   let mdxFiles = getMDXFiles(dir);
-  return mdxFiles.map((file) => {
-    let { metadata, content } = readMDXFile(path.join(dir, file));
-    let slug = path.basename(file, path.extname(file));
-    let tweetIds = extractTweetIds(content);
-    return {
-      metadata,
-      slug,
-      tweetIds,
-      content,
-    };
-  });
+  return mdxFiles
+    .map((file) => {
+      let { metadata, content } = readMDXFile(path.join(dir, file));
+      let slug = path.basename(file, path.extname(file));
+      let tweetIds = extractTweetIds(content);
+      return {
+        metadata,
+        slug,
+        tweetIds,
+        content,
+      };
+    })
+    .filter((post) => post.metadata.publishedAt !== undefined)
+    .filter((post) => post.metadata.publishedAt !== 'YYYY-MM-DD')
+    .filter(
+      (post) => Date.now() - new Date(post.metadata.publishedAt).getTime() > 0,
+    );
 }
 
 export function getBlogPosts() {
