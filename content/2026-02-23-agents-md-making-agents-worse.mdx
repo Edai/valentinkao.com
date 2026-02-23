@@ -1,0 +1,22 @@
+---
+title: "Your AGENTS.md Is Probably Making Your AI Agent Worse"
+publishedAt: '2026-02-23'
+summary: "I maintain CLAUDE.md files across projects. Most of them made my agents worse before I figured out the pattern."
+---
+
+I maintain CLAUDE.md files across projects. Most of them made my agents worse before I figured out the pattern.
+
+File structure, import patterns, framework conventions? This is all noise. The model already knows this from reading the code. Especially if an LLM wrote your context file.
+
+Knowledge that the model can't infer? That's THE thing, like that one business rules that contradict defaults, or the decision that looks wrong but exists for a reason.
+
+Researchers at ETH Zurich tested this across repositories. Context files decreased agent success rates and increased costs by 20%. Theo from t3.gg in his video put it best: it's like making a developer sit through every meeting before writing code.
+
+The context files that work answer one question: what would surprise a senior engineer reading this codebase for the first time?
+
+Everything else is noise you pay 20% more for.
+
+Open your context file right now. If you can't point to one line the model couldn't figure out alone, delete the rest.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GcNu6wrLTJc?si=VqZ1crI9V0gOkOza" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
