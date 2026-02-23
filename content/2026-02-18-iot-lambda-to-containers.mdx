@@ -1,0 +1,18 @@
+---
+title: "I Scaled an IoT Platform to 2M Devices on Lambda - Today I'd Change One Thing"
+publishedAt: '2026-02-18'
+summary: "I scaled an IoT platform to 2M devices on Lambda. Today, I'd run the hot path on containers."
+---
+
+I scaled an IoT platform to 2M devices on Lambda. Today, I'd run the hot path on containers.
+
+Serverless was the right call early. Traffic was spiky, unpredictable.
+
+Then the pattern changed. Device telemetry ingestion hit constant high throughput, 24/7. Lambda was millions millions of invocations on a workload that never scaled to zero. We cut log volume, trimmed memory, batched SQS consumers. Hit the floor.
+
+That hot path on ECS Fargate. (Almost) same code, containerized, sustained compute. The rest of the platform stayed on Lambda where it belonged.
+
+Serverless-first doesn't mean lambda-forever. It means Lambda is your default until the invocation graph says otherwise. Flat line? You're overpaying.
+
+Have you re-evaluated a foundational architecture decision mid-project? What triggered it?
+

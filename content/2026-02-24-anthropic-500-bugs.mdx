@@ -1,0 +1,18 @@
+---
+title: "Anthropic Found 500+ Bugs That Decades of Expert Review Missed"
+publishedAt: '2026-02-24'
+summary: "The first version of an AI code review tool I built caught style issues. Indentation, naming, missing types. Useful. Not important."
+---
+
+The first version of an AI code review tool I built caught style issues. Indentation, naming, missing types. Useful. Not important.
+
+The bugs that matter live deeper. User input passing through 4 files before hitting a query unescaped. Pattern-matching scanners can't trace that path.
+
+Anthropic just launched Claude Code Security and found **500+ vulnerabilities** in production open-source codebases. Memory corruption, auth bypasses, logic errors. Bugs that survived decades of expert review.
+
+Security is moving from grep-for-SQL-injection to trace-this-input-through-the-entire-call-chain. That's the real shift.
+
+But AI scanning still needs a human deciding what to fix. Finding 500 bugs is impressive. Prioritizing which 5 matter for your threat model? Still your job.
+
+Run your 3 repos through an AI security scanner. You might not like what it finds.
+
