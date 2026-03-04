@@ -1,0 +1,30 @@
+---
+title: "3 AI Agent Patterns Every Developer Should Know"
+publishedAt: '2026-03-06'
+summary: "Every AI agent I've shipped follows one of three patterns. Same three patterns that run every human organization."
+---
+
+Every AI agent I've shipped follows one of three patterns. Same three patterns that run every human organization.
+
+1. **Single Agent:**
+
+One LLM, one prompt, a set of tools (search, APIs, calculators). You define the goal, not the steps. The model's internal reasoning figures out the sequence on its own. "Plan a trip to San Francisco" and it autonomously searches weather, books flights, finds hotels.
+
+It's just like a solo developer: flexible, fast to set up. But non-deterministic. Ask it to find a late-night restaurant AND calculate the fastest route, and the prompt becomes fragile. It skips steps, calls tools in the wrong order, hallucinates. Maximum flexibility, zero control.  
+
+2. **Sequential Agent:**
+
+A fixed pipeline where agents pass the baton through a shared session state, a short-term memory scratchpad. Agent 1 finds restaurants, writes to the scratchpad. Agent 2 reads it, maps the route. The system guarantees food is found before transport is planned.
+
+Like an assembly line: predictable, reliable. But rigid. If the user needs step 3 before step 1, it can't adapt.
+
+
+3. **Parallel Agent:**
+
+Independent agents running simultaneously. Museum finder, concert finder, restaurant finder, all at once. A final aggregator agent synthesizes everything into one cohesive output.
+
+Imagine a cross-functional team with a project manager. 3x faster. But more expensive, and engineering the "gather and synthesize" step is harder than it looks.
+
+
+From what I see, Claude Code uses parallel sub-agents for codebase research. Cursor routes different models per task type. Your daily tools already picked one of these patterns.
+

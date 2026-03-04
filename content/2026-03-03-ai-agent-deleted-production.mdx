@@ -1,0 +1,30 @@
+---
+title: "Apparently \"Amazon's AI Agent Deleted a Production System"
+publishedAt: '2026-03-03'
+summary: "The tech media had a field day last week: \"Amazon's AI coding agent deleted prod and caused a 13-hour AWS outage!\""
+---
+
+The tech media had a field day last week: "Amazon's AI coding agent deleted prod and caused a 13-hour AWS outage!"
+
+But if you read Amazon's official response, the story completely flips. It wasn't a 13-hour core meltdown. It was a brief, localized disruption to Cost Explorer.
+
+And the root cause Amazon pointed to? "Misconfigured access controls." Not the trendy AI that everybody is talking about.
+
+That is the scarier part: any script, manual click, or tired engineer with that same broad IAM role could have done the exact same damage. The AI just moves faster, with no hesitation, especially if you kept clicking "authorize", tab tab tab.
+
+From my experience of building cloud backends even with ISO27001, I've learned that strict least-privilege is non-negotiable. Every Lambda function gets exactly the permissions it needs, defined in CloudFormation or Terraform. Every change goes through a PR. I do my best to not give admin access to production. Not to humans, not to AI
+  
+In fact, Amazon’s own stated fix for this incident was simply adding "mandatory peer review for production access."
+
+The takeaway isn't "ban AI agents from prod." The takeaway is what we’ve needed for years: least-privilege IAM, infrastructure as code, and mandatory approval for destructive actions.
+
+AI didn't invent a new security threat. It just exposes your existing technical debt at machine speed.
+
+Go run "terraform plan" or check the Cloudformation stack drifts right now. Does it match what's actually deployed?
+
+The FT article: https://www.ft.com/content/00c282de-ed14-4acd-a948-bc8d6bdb339d
+
+Amazon answer: https://www.aboutamazon.com/news/aws/aws-service-outage-ai-bot-kiro 
+
+An another article about it: https://www.engadget.com/ai/13-hour-aws-outage-reportedly-caused-by-amazons-own-ai-tools-170930190.html
+

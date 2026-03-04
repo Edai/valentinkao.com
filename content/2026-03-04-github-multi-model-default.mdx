@@ -1,0 +1,20 @@
+---
+title: "GitHub Just Commoditized My Architecture"
+publishedAt: '2026-03-04'
+summary: "GitHub just gave every paid Copilot user access to Claude, GPT-5.3, and Codex. No extra cost. Pick the best model per task."
+---
+
+GitHub just gave every paid Copilot user access to Claude, GPT-5.3, and Codex. No extra cost. Pick the best model per task.
+
+A year ago I built multi-model routing into a code review tool. Custom abstraction layer, OpenRouter gateway, task-specific model selection.
+
+Three things I've reconsidered since:
+
+- The abstraction layer I was proud of? It's a commodity now. GitHub, Cursor, Windsurf all ship model switching natively
+- I spent time optimizing which model handles which task. Most developers will just pick "the best one" and move on. They might be right
+- The real moat was never model selection. It was the evaluation pipeline I built around the outputs
+
+I'm less certain multi-model routing is a differentiator than I was six months ago. The value shifted from choosing models to judging their output.
+
+Honestly, I'm still figuring out where the moat actually lives now.
+

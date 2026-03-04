@@ -1,0 +1,22 @@
+---
+title: "Lambda Durable Execution Won't Replace Step Functions"
+publishedAt: '2026-03-05'
+summary: "Lambda can now pause for a year and resume where it stopped. No charges while paused."
+---
+
+Lambda can now pause for a year and resume where it stopped. No charges while paused.
+
+AWS Lambda Durable Functions lets you write workflows as code. No YAML, no state machines. Just functions.  
+
+Sounds great until you've debugged one.
+
+Simple sequential chains with retries? Sure I would pick Durable Execution. Less ceremony, just code.
+
+But across my different backends with SNS fan-out, SQS retry queues, and dead letter handlers, I need orchestration I can see. Try debugging a durable function three retries deep with implicit state.
+
+I learned this the hard way. A sequence of several Lambda stuck in an infinite loop pushing messages into SQS. Every failure triggered a retry. The bill spiked before anyone noticed. Christmas Eve. (Set your alerts, seriously.)
+
+Orchestration you can't see is orchestration you can't debug.
+  
+The community calls this a Step Functions killer. I'd call it a convenience feature with a complexity ceiling.
+
