@@ -1,0 +1,22 @@
+---
+title: "A GitHub Issue Compromised 4,000 Developers"
+publishedAt: '2026-03-09'
+summary: "Someone opened a GitHub issue last week. Just a title. No code, no link, no special permissions."
+---
+
+Someone opened a GitHub issue last week. Just a title. No code, no link, no special permissions.
+
+8 hours later, 4,000 developers had downloaded a compromised npm package.
+
+Cline's AI-powered issue triage bot (running in **GitHub Actions**) processed the title. The title was a prompt injection. The AI executed code, poisoned the build cache, and published a malicious package to npm.
+
+Five steps from issue to supply chain compromise. No credentials stolen. No repo access needed.
+
+This is a new attack surface. If you have an AI agent in your CI/CD pipeline, that agent has whatever permissions you gave it. If it can publish packages, merge PRs, or modify configs, then a crafted issue title can too.
+
+I treat AI agents like I treat IAM roles: enumerate what they can do, strip everything they don't need, and assume someone will try to exploit the gap.
+
+Snyk wrote a nice article about it, check it out (link in the comment !)
+
+![[Pasted image 20260309161526.png]] 
+

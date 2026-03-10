@@ -1,0 +1,20 @@
+---
+title: "Math.sumPrecise Won't Fix the Bug That Costs Money"
+publishedAt: '2026-03-12'
+summary: "ES2026 adds `Math.sumPrecise()` to fix floating-point summation errors. It won't fix the precision bug I caught on an IoT platform. That bug wasn't floating-..."
+---
+
+ES2026 adds `Math.sumPrecise()` to fix floating-point summation errors. It won't fix the precision bug I caught on an IoT platform. That bug wasn't floating-point.
+
+We were aggregating device readings for billing. The code looked clean:
+
+`.reduce((acc, reading) => acc.plus(reading.kwh).round(2), new Big(0))`
+
+`.round(2)` inside the reduce. Every intermediate sum got rounded. Thousands of readings per day, each contributing up to 0.005 of error. The invoices drifted. A client noticed before we did.
+
+The fix: move `.round(2)` outside. Accumulate at full precision, round once.
+
+The bug that costs money is where you round, not how you sum.
+
+The language can't enforce that for you.
+
