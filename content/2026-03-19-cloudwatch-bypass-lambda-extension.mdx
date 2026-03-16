@@ -1,0 +1,20 @@
+---
+title: "CloudWatch Was Our Most Expensive Service. Not Lambda. Logs."
+publishedAt: '2026-03-19'
+summary: "CloudWatch was our most expensive AWS service. Not Lambda. Not DynamoDB. Not S3. Logs."
+---
+
+CloudWatch was our most expensive AWS service. Not Lambda. Not DynamoDB. Not S3. Logs.
+
+$0.50/GB for log ingestion across 30+ Lambda functions in production. The logging pipeline had 6 hops: Lambda → CloudWatch → Subscription Filter → processing Lambda → SNS (for fanout) → SQS → forwarder Lambda → the analytics platform.
+
+Antoine Vivies and I looked at that pipeline and asked a different question: do we actually use CloudWatch, or are we just passing through to the analytics platform?
+
+So we built a Lambda Extension that intercepts logs via the Logs API and sends them straight to SQS. CloudWatch still receives raw stdout  but with retention set to 1 day, it's a debugging tool, not a cost center. Deployed it as a Lambda Layer, so zero handler code changes across all 30+ functions.
+
+The results: CloudWatch ingestion costs dropped 70%. Total logging pipeline cost down 60%. Six hops became three.
+
+(Since May 2025, AWS now offers native Lambda log routing to S3 and Firehose with tiered pricing, so you may not need a custom extension anymore. But the principle still holds.)
+
+The biggest cloud savings I've found don't come from tuning services. They come from asking "do I need this service at all?" and removing the ones I don't.
+

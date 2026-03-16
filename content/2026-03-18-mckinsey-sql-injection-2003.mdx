@@ -1,0 +1,18 @@
+---
+title: "McKinsey's AI Platform Got Hacked by SQL Injection"
+publishedAt: '2026-03-18'
+summary: "McKinsey's internal AI platform got red-teamed last week and it wasn't pretty. 46.5 million chat messages. 728,000 files. 57,000 employee accounts. 3.68 mill..."
+---
+
+McKinsey's internal AI platform got red-teamed last week and it wasn't pretty. **46.5 million** chat messages. **728,000 files**. **57,000 employee accounts**. **3.68 million RAG chunks** exposed. And **95 system prompt configs, all writable**, meaning an attacker could silently poison what the AI tells 40,000+ consultants.
+
+The attack? SQL injection. The same vulnerability that's been on OWASP's Top 10 since 2003.
+
+An autonomous security agent found it in 2 hours. Unauthenticated endpoints. SQL injection through unsanitized inputs. And once inside, no secondary layer protecting the RAG knowledge base.
+
+The lesson isn't about McKinsey, it's every enterprise building AI platforms the same way: fast, API-first, security as an afterthought. The AI is differentiated. The security is commodity. And the commodity part is what gets exploited.
+
+If you have an internal AI platform in production, run it through OWASP Top 10.
+
+Source: https://codewall.ai/blog/how-we-hacked-mckinseys-ai-platform
+

@@ -1,0 +1,24 @@
+---
+title: "1M Tokens, Zero Premium. Half Your RAG Pipeline Might Be Unnecessary."
+publishedAt: '2026-03-16'
+summary: "Anthropic just made 1M tokens cost the same per-token as 1K. No long-context premium. Sonnet 4.6 at $3 per million input tokens. Previously, anything over 20..."
+---
+
+Anthropic just made 1M tokens cost the same per-token as 1K. No long-context premium. Sonnet 4.6 at $3 per million input tokens. Previously, anything over 200K was billed at 2x.
+
+This directly affects my work.
+
+I use Claude Code to develop and I also build voice and text agents where a single conversation generates 100+ function tool calls. State mutations, phase transitions, topic assessments, all tracked in context. Every tool call adds tokens. Lose context mid-conversation and the agent forgets what it already covered. Starts repeating questions. Misses topics.
+
+The workaround was always lossy summarization. Budget every token. Engineer around the limit.
+
+Now the full trace stays in context. No summarization needed. The agent retains the conversation history and performs noticeably better on my use cases. That said, retaining tokens isn't the same as perfect recall. Benchmarks show most models degrade on synthesis tasks past 32K tokens. More context doesn't automatically mean better reasoning over all of it.
+
+You can see in the chart by Anthropic, that even the best models lose accuracy when retrieving information past 256K tokens, some drop by more than half at 1M. More context is available, but the model's ability to find and use what's in it still degrades at scale.
+
+And I keep seeing "RAG is dead" posts and I think it's wrong.
+
+There are two types of RAG in production. RAG you built because context was expensive (at flat pricing, audit this, it might be unnecessary complexity now). And RAG you built because data exceeds 1M tokens or updates constantly (still essential, nothing changed).
+
+The first category is worth questioning this quarter, but the second isn't going anywhere.
+
