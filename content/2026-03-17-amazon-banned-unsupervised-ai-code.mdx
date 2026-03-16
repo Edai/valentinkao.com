@@ -1,0 +1,26 @@
+---
+title: "Amazon Banned Unsupervised AI Code. The Bottleneck Moved."
+publishedAt: '2026-03-17'
+summary: "Amazon's e-commerce team just mandated senior engineer sign-off on every AI-assisted code change. A 6-hour outage forced their hand."
+---
+
+Amazon's e-commerce team just mandated senior engineer sign-off on every AI-assisted code change. A 6-hour outage forced their hand.
+
+Same week, METR published research showing 50% of PRs that pass SWE-bench would be rejected by real maintainers. Broken code, core functionality failures, quality violations. The benchmark says "pass." The human says "no."
+
+And Anthropic shipped Claude Code Review, a multi-agent system that catches issues in 84% of large PRs with under 1% false positive rate.
+
+Three signals. Same conclusion: the bottleneck moved.
+
+We got really good at generating code with AI. We didn't invest equally in reviewing it. That asymmetry is exactly what caused Amazon's outages.
+
+Claude Code writes more code in a day than I used to write in a week. But my review capacity stayed the same.
+
+If your team has Claude Code or Copilot seats but no infrastructure for reviewing what your assistant produces, you built the pipe without the filter.
+
+You can check METR's analysis, it's insightful. The figure I shared from their article tells the whole story: "Pass" means both the automated grader _and_ human maintainers accepted the patch; everything else is failure, ordered by severity. That gap is the risk we're not measuring.
+
+[https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/](https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/)
+
+The article of TechRadar about the sign-off https://www.techradar.com/pro/amazon-is-making-even-senior-engineers-get-code-signed-off-following-multiple-recent-outages
+
