@@ -1,0 +1,31 @@
+---
+title: "Dispatch vs OpenClaw — The Real Battle Is the Permission Model"
+publishedAt: '2026-03-20'
+summary: "OpenClaw: 325K GitHub stars in 4 months."
+---
+
+OpenClaw: 325K GitHub stars in 4 months.
+
+Monday at GTC, Jensen Huang: "Every company needs an OpenClaw strategy." Tuesday, Anthropic ships Dispatch and Claude Code Channels.
+  
+
+- Dispatch: text Claude from your phone, it runs tasks on your desktop via Cowork. Sandboxed. Local-first. Asks before touching anything sensitive. From $20/mo: https://support.claude.com/en/articles/13947068-assign-tasks-to-claude-from-anywhere-in-cowork
+
+- Claude Code also shipped Channels: push tasks from Telegram or Discord into a running session: https://code.claude.com/docs/en/channels
+
+First impression: Dispatch made less noise than the remote-control command a few weeks back.
+
+But I see the same question answered two very different ways: what should an AI agent be allowed to do without asking?
+
+- OpenClaw: configure everything, trust the user.
+
+- Anthropic: sandbox everything, confirm before acting.
+
+Both break at scale.
+
+Configuring 100+ skills is a security surface nobody can audit. Cisco already caught a third-party OpenClaw skill exfiltrating data and injecting prompts without the user knowing.
+
+On the other side, confirming every file move, every email draft, every calendar update defeats the purpose of delegation. Early testers report Dispatch succeeds about half the time on complex tasks.
+
+The company that nails the autonomy part, not "trust everything" or "confirm everything", wins this market.
+
