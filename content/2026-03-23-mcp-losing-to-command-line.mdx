@@ -1,0 +1,28 @@
+---
+title: "MCP Is Losing to the Command Line"
+publishedAt: '2026-03-23'
+summary: "Perplexity ditched MCP. 72% of the context window was consumed by tool schemas before the agent did anything."
+---
+
+Perplexity ditched MCP. 72% of the context window was consumed by tool schemas before the agent did anything.
+
+Cloudflare replaced MCP with Code Mode, code generation against a typed SDK. 2,500 API endpoints that would need ~244,000 tokens as MCP tools? ~1,000 tokens. A 244x reduction.
+  
+Scalekit benchmarked five identical GitHub tasks:
+
+- CLI: 4-32x fewer tokens than MCP
+
+- Reliability: CLI 100%, MCP 72%
+
+- Cost per 10K operations: CLI $3.20, MCP $55.20
+
+Garry Tan posted "MCP sucks honestly" and shipped a CLI-based agent setup instead. 30+ CVEs filed against MCP in 60 days. 82% of surveyed servers vulnerable to path traversal.
+
+72% of the context consumed before the agent starts. 72% reliability when it does.
+
+I keep seeing the same pattern: LLMs were trained on man pages, READMEs, CLI documentation. Small tools, text streams, composability. The Unix philosophy is exactly what agents understand best.
+
+MCP isn't dead. It solves real problems for tool discovery and enterprise multi-tenant scenarios. But for developer tools and local agents, the command line was always the answer.
+
+Where are you drawing the line between CLI and MCP in your agent stack?
+

@@ -1,0 +1,20 @@
+---
+title: "Lambda Managed Instances — AWS Just Admitted Serverless Has a Ceiling"
+publishedAt: '2026-03-26'
+summary: "#AWS launched Lambda Managed Instances at re:Invent last year. Your Lambda functions, running on #EC2. Zero cold starts. Savings Plans apply."
+---
+
+**#AWS** launched Lambda Managed Instances at re:Invent last year. Your Lambda functions, running on **#EC2**. Zero cold starts. Savings Plans apply.
+
+I wrote about this exact problem a few weeks ago.
+
+I ran 30+ Lambda functions serving 1.8M connected devices. Traffic started spiky. Serverless was perfect. Then telemetry hit constant throughput, 24/7. Millions of invocations on a workload that never scaled to zero. An idea that could have helped: move the hot path to **#ECS** **#Fargate**.
+
+Lambda Managed Instances is the third option I didn't have. Same **#Lambda** DX.
+
+EC2 pricing plus a 15% management fee. Multi-concurrency per environment. Savings Plans finally apply, up to 72% off. No containerization.
+
+  **#Serverless**-first doesn't mean Lambda-forever. The best architecture lets you graduate without rewriting.
+
+  Check your Lambda cost report. If any function runs flat traffic above $500/month, the escape hatch is live.
+
