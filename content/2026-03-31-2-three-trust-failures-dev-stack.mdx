@@ -1,0 +1,18 @@
+---
+title: "Same Attacker Hit Two AI Packages on PyPI in Five Days"
+publishedAt: '2026-03-31'
+summary: "LiteLLM compromised on PyPI. 3.4 million daily downloads. Payload steals SSH keys, cloud tokens, Kubernetes secrets."
+---
+
+LiteLLM compromised on PyPI. 3.4 million daily downloads. Payload steals SSH keys, cloud tokens, Kubernetes secrets.
+
+Four days later: telnyx. Same attacker. Credential stealer hidden inside WAV files.
+
+Datadog linked both to the same group, TeamPCP. They also hit Trivy and Checkmarx. One actor, multiple AI-adjacent packages, same week.
+
+Third supply chain attack on AI tools I've covered in 1 month.
+
+AI dependencies are the fastest-growing part of most dependency trees. They are also the newest, the least audited, and updated the most frequently. That is not a coincidence. That is a target.
+
+Datadog's analysis: https://securitylabs.datadoghq.com/articles/litellm-compromised-pypi-teampcp-supply-chain-campaign/
+
