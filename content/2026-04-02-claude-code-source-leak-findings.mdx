@@ -1,0 +1,56 @@
+---
+title: "Claude Code Source Leak: What the Community Actually Found Inside"
+publishedAt: '2026-04-02'
+summary: "You saw the Claude Code leak everywhere this week. Most of the noise was about code quality. Here are the interesting findings in the noise:"
+---
+
+You saw the Claude Code leak everywhere this week. Most of the noise was about code quality. Here are the interesting findings in the noise:
+
+- AutoDream mode. After 5 sessions and 24 hours of silence, Claude spawns a background agent that reviews and consolidates its own memory files. Separately, KAIROS is an assistant mode that turns Claude into a persistent agent. Resumable sessions, team coordination, auto-backgrounding of blocking tasks. It plugs into the Agent SDK. Two unreleased systems. Both gated behind feature flags.
+	- `src/services/autoDream/autoDream.ts:64-65` — `minHours: 24, minSessions: 5`
+	- `src/services/autoDream/config.ts:16-20` — Feature flag `tengu_onyx_plover`
+	- `src/services/autoDream/consolidationPrompt.ts:10-65` — 4-phase dream: Orient/Gather/Consolidate/Prune
+	- `src/bootstrap/state.ts:72` — `kairosActive: boolean`; `src/bridge/bridgeMain.ts:1523` — `feature('KAIROS')` gate
+
+- Coordinator Mode. One Claude instance spawns and manages multiple worker agents in parallel. Task distribution, result aggregation, output conflict resolution. The orchestration strategy? A ~258-line system prompt. The model decides what to parallelize at inference time. Code underneath handles spawning, lifecycle, and notifications.
+	- `src/coordinator/coordinatorMode.ts:111-369` — ~258-line system prompt defining orchestration behavior
+	- `src/utils/swarm/spawnInProcess.ts:104-216` — `spawnInProcessTeammate()` worker creation
+	- `src/tasks/LocalAgentTask/LocalAgentTask.tsx:197-262` — XML `<task-notification>` result aggregation
+	- `src/coordinator/coordinatorMode.ts:213-217` — "Parallelism is your superpower. Workers are async."
+
+- Fake tools as anti-copying poison. Claude Code mixes fake tool definitions into API calls. If a competitor captures traffic to train a copycat, their model learns to call tools that don't exist. A second mechanism compresses assistant output between tool calls server-side. Different technique, same goal.
+	- `src/services/api/claude.ts:301-313` — `anti_distillation: ['fake_tools']` opt-in, gated behind `tengu_anti_distill_fake_tool_injection`
+	- `src/utils/betas.ts:279-284` — Separate mechanism: server-side connector-text summarization. Ant-only, requires `Capability.ANTHROPIC_INTERNAL_RESEARCH`
+
+- Frustration detection via regex. Not their own LLM. A regex. Pattern-matching for "wtf" and "this sucks" to track analytics. Peak irony.
+	- `src/utils/userPromptKeywords.ts:4-11` — `negativePattern` regex matching `wtf`, `this sucks`, `damn it`, profanity variants
+	- `src/utils/processUserInput/processTextPrompt.ts:59-64` — Logs `tengu_input_prompt` event with `is_negative` flag
+	- `src/screens/REPL.tsx:104-110` — `useFrustrationDetection` conditionally loaded (Ant-only/dogfooding)
+
+- A two-tier web. 89 documentation sites are hardcoded for full content extraction. Every other website gets a 125-character paraphrased snippet.
+	- `src/tools/WebFetchTool/preapproved.ts:14-131` — `PREAPPROVED_HOSTS` Set with 89 domains
+	- `src/tools/WebFetchTool/prompt.ts:31` — "Enforce a strict 125-character maximum for quotes from any source document"
+	- `src/tools/WebFetchTool/prompt.ts:23-46` — `makeSecondaryModelPrompt()` splits logic on `isPreapprovedDomain`
+
+- CLAUDE.md is part of the system prompt. Four hierarchy levels: managed, user, project, local. Every line you write costs tokens on every single message. Every line.
+	- `src/utils/claudemd.ts:1-26` — Hierarchy: 1. Managed (`/etc/claude-code/CLAUDE.md`), 2. User (`~/.claude/CLAUDE.md`), 3. Project (`CLAUDE.md`, `.claude/CLAUDE.md`, `.claude/rules/*.md`), 4. Local (`CLAUDE.local.md`)
+	- `src/utils/claudemd.ts:790-920` — `getMemoryFiles()` loading logic with upward directory walk
+	- `src/context.ts:155-189` — `getUserContext()` injects into system prompt via `getClaudeMds()`
+
+- 250K wasted API calls per day. A code comment dated March 10, 2026 reveals 1,279 sessions hit 50+ consecutive autocompact failures (one session reached 3,272). The fix? One constant: MAX_CONSECUTIVE_AUTOCOMPACT_FAILURES = 3. Three strikes and compaction disables for the session. That bug sat in production burning a quarter million API calls daily until someone checked the metrics.
+	- `src/services/compact/autoCompact.ts:67-70` — `// BQ 2026-03-10: 1,279 sessions had 50+ consecutive failures (up to 3,272) wasting ~250K API calls/day globally.`
+	- `src/services/compact/autoCompact.ts:70` — `const MAX_CONSECUTIVE_AUTOCOMPACT_FAILURES = 3`
+	- `src/services/compact/autoCompact.ts:260-265` — Circuit breaker check; `src/services/compact/autoCompact.ts:338-349` — Failure counter increment and trip log
+
+- Capybara v8 (internal codename, likely Sonnet 4.6) false-claims rate: 29-30%. Their next-gen model has nearly double the false-claims rate of v4 (16.7%). Anthropic's fix? Extra system prompt rules that forbid the model from claiming tests pass when they don't, from suppressing failing checks, from hedging confirmed results. Currently internal-only, being validated via A/B testing before external rollout. The most honest production comment in the entire codebase.
+	- `src/constants/prompts.ts:237-240` — `// @[MODEL LAUNCH]: False-claims mitigation for Capybara v8 (29-30% FC rate vs v4's 16.7%)`
+	- `src/constants/prompts.ts:240` — "Never claim 'all tests pass' when output shows failures, never suppress or simplify failing checks to manufacture a green result"
+
+- ULTRAPLAN. Claude offloads complex planning to a cloud container that thinks for up to 30 minutes. The plan appears in your browser for approval. You can reject and iterate. Then choose: execute locally or let the cloud session code it and open a PR. This is where AI agents are headed.
+	- `src/commands/ultraplan.tsx:24` — `const ULTRAPLAN_TIMEOUT_MS = 30 * 60 * 1000`
+	- `src/commands/ultraplan.tsx:464` — "~10–30 min · Claude Code on the web drafts an advanced plan you can edit and approve"
+	- `src/utils/ultraplan/ccrSession.ts:66` — `UltraplanPhase = 'running' | 'needs_input' | 'plan_ready'`
+	- `src/commands/ultraplan.tsx:100-101` — `executionTarget === 'remote'`: "User chose execute in CCR in the browser PlanModal"
+
+I use Claude Code every day. This was an accidental product roadmap, it is the most interesting one I have read for a while.
+
