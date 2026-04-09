@@ -1,0 +1,20 @@
+---
+title: "North Korea Deepfaked a Founder to Backdoor Axios"
+publishedAt: '2026-04-07'
+summary: "Axios gets 100 million downloads a week. On March 31st, North Korean hackers published a backdoor in it."
+---
+
+Axios gets 100 million downloads a week. On March 31st, North Korean hackers published a backdoor in it.
+
+Here is how it happened. UNC1069 cloned a company founder's likeness and the company itself. They invited the Axios maintainer, Jason Saayman, into a branded Slack workspace with fake employees sharing LinkedIn posts. Then they scheduled a Microsoft Teams call.
+
+During the call, a fake error popped up saying his system was out of date. The "fix" was a Teams update. It was a RAT. Remote access to his machine. From there, they grabbed his npm credentials and published two poisoned versions: axios 1.14.1 and 0.30.4. A malicious dependency called "plain-crypto-js" deploying WAVESHAPER.V2 across Windows, macOS, and Linux.
+
+Three hours. That is how long the compromised versions were live before detection. But in those three hours, every CI pipeline that ran npm install pulled them.
+
+Google and Microsoft published independent attribution reports the same week. Both pointed to North Korean state actors. No code exploit. A deepfake, a fake Teams error, and one maintainer.
+
+I have shipped a lot of production systems that depend on Axios. Most of us have. Nobody would have questioned that version. Dependabot would have suggested the update, and we would have approved it without a second look.
+
+That is the real attack surface. Not the code. The trust.
+

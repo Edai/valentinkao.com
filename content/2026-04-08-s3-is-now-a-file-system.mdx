@@ -1,0 +1,18 @@
+---
+title: "S3 Is Now a File System"
+publishedAt: '2026-04-08'
+summary: "S3 Files went GA yesterday. Amazon S3 is now mountable as a file system from any EC2 instance, container, or Lambda function. 34 AWS regions."
+---
+
+S3 Files went GA yesterday. Amazon S3 is now mountable as a file system from any EC2 instance, container, or Lambda function. 34 AWS regions.
+
+Built on EFS. Your file-based applications mount an S3 bucket, and S3 Files translates file operations into S3 API calls. No data duplication. No sync pipelines. No second storage layer.
+
+Data lives in S3. ML training, data preparation, and file-based tools need a file system. That gap meant staging terabytes into EFS or FSx and keeping them in sync.
+
+For AI agents, this is where it gets interesting. Agents need shared persistent state across pipelines. S3 Files lets thousands of compute resources mount the same bucket simultaneously. One storage layer for object access and file access.
+
+I've built enough AWS systems on S3 to know: the fewer layers between your code and your data, the better.
+
+The best infrastructure changes are the ones that delete a layer you should never have needed.
+
