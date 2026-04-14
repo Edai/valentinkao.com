@@ -1,0 +1,24 @@
+---
+title: "Anthropic's 2026 Report Says SDLC Is Dead. The Bottleneck Just Moved."
+publishedAt: '2026-04-13'
+summary: "METR has been tracking how long an AI agent can work on a task before failing. The horizon is doubling every four months. In 2023, models handled sub-minute ..."
+---
+
+METR has been tracking how long an AI agent can work on a task before failing. The horizon is doubling every four months. In 2023, models handled sub-minute work. Today Claude Opus 4.6 and GPT-5.2 clear tasks that take humans over three hours.
+
+Anthropic's January Agentic Coding Trends Report names the shift: minutes to days, multi-agent orchestrators replacing the sequential SDLC. Rakuten, CRED, TELUS, and Zapier all cited.
+
+Amazon found out the hard way. Kiro deleted an AWS Cost Explorer environment in December 2025. 13 hours of outage. A second AWS outage hit in March. 6.3 million orders lost. The response: senior sign-off on every AI-assisted production change from junior and mid-level engineers.
+
+CodeRabbit closed the loop on the review side. Across 470 pull requests, AI-authored ones carried 1.7x more bugs than human ones, and 75% of the extra bugs sat in logic and correctness. That's the class of bug tests don't catch. Only review does.
+
+Generation scaled. Review didn't.
+
+I shipped an AI code review tool in 2025 because I was already living the asymmetry. Claude Code writes a week of code in a day. My review capacity didn't scale with my keyboard. Neither did my team's.
+
+Honest caveat: METR runs ~100 tasks, CodeRabbit analyzed 470 PRs. Read the methodology before quoting.
+
+If your team ships agent-written code with no review infrastructure underneath, the productivity number you're celebrating is lying to you.
+
+Link in comments
+

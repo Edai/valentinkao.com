@@ -1,0 +1,28 @@
+---
+title: "Two Medium Posts Went Viral Blaming Lambda. The Details Tell a Different Story."
+publishedAt: '2026-04-17'
+summary: "Two Medium posts went viral. \"$18K Lambda bill, moved back to EC2 for $580.\" \"$12K Lambda bill, down to $315.\""
+---
+
+Two Medium posts went viral. "$18K Lambda bill, moved back to EC2 for $580." "$12K Lambda bill, down to $315."
+
+The $18K post: a $430/month stack migrated to 47 Lambda functions. 4,000 users. 12 API calls per dashboard load. Background polling at 60,000 requests per hour. 120 million requests from 4,000 users. API Gateway alone: $4,200/month
+
+The $12K post: Lambda costs grew 70x while traffic grew 10x. 1GB memory for functions using 200MB. 40% cold starts at 2,400ms. Real API Gateway cost: $8.40 per million, not the advertised $3.50
+
+Both ran synchronous per-request Lambda on steady traffic. Both learned the hard way it was the wrong pattern.
+
+I run 30+ Lambda functions at 500 requests per second. One rule I always follow and push to my team: keep the Lambda running as short as possible, lowest memory as possible.
+
+That single constraint forced every right architectural decision: async by default, SNS fan-out to SQS, functions at 100–200 lines, cold starting in 200ms, never waiting on anything you can offload.
+
+Lambda isn't my biggest cost line. The pattern is what changes the math.
+
+The $12K team actually proved this themselves. They went hybrid afterward: EC2 for the API, Lambda for events. Bill dropped to $362. Lambda worked fine once it ran the right workload.
+
+(AWS also shipped Lambda Managed Instances for steady-state. SmugMug and Flickr got 80% savings.)
+
+The most expensive cloud mistake isn't the platform. It's the pattern nobody questioned.
+
+Links to the articles in comments
+

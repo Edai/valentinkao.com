@@ -1,0 +1,18 @@
+---
+title: "GitHub Just Shipped Stacked PRs. The Monolith Diff Was Always the Wrong Unit of Review."
+publishedAt: '2026-04-15'
+summary: "GitHub just shipped native Stacked PRs. CodeRabbit analyzed 470 pull requests. AI-authored ones carry 1.7x more bugs. 75% in logic and correctness. The monol..."
+---
+
+GitHub just shipped native Stacked PRs. CodeRabbit analyzed 470 pull requests. AI-authored ones carry 1.7x more bugs. 75% in logic and correctness. The monolith diff was always the wrong unit of review.
+
+Claude Code writes a feature branch. 800 lines. One PR. The reviewer skims past line 300 and catches nothing at line 340 where the logic bug sits.
+
+GitHub Stacked PRs (only available in private preview) split that into layers. Each PR targets the branch below it. 50-100 lines per diff. Cascading rebase. Each layer reviewable before the coffee gets cold.
+
+It makes me realize that the review bottleneck might not be about speed, but diff size. I shipped an AI code review tool last year because Claude Code's output outpaced my review capacity. The tool helped because it would review line-by-line. Smaller diffs helped more.
+
+Google and Meta ran stacked workflows internally for years with "Phabricator" and it exists similar tools if you just type "stacked pr" on google.
+
+If AI writes 10x the code, more reviewers won't save you. Smaller diffs might.
+
