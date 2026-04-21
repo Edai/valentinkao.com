@@ -1,0 +1,28 @@
+---
+title: "April 30. Node.js 20.x Stops Getting Lambda Security Patches."
+publishedAt: '2026-04-21'
+summary: "April 30. AWS Lambda stops patching Node.js 20.x."
+---
+
+April 30. AWS Lambda stops patching Node.js 20.x.
+
+AWS published three phases:
+
+- April 30: security patches stop, console blocks creation.
+
+- August 31: Lambda blocks new function creation entirely.
+
+- September 30: updates to existing functions blocked. Invocations keep running indefinitely on all of them.  
+
+Node 22 has been LTS since October 2024. It buys a full year past April 30. Node 24 is already there if you want to skip a step. Node 20 is on the clock.
+
+I've done these migrations before. I believe this kind of update should run ASAP. The longer you wait, the more a patch becomes a project.
+
+Two habits keep mine painless. Every AWS SDK call sits behind a thin abstract class, so when v3 ships, one file changes, not 30.
+
+A nightly script bumps runtimes in a test account, runs the test suites, flags breakage before I touch anything. It can catch build errors or regressions before they ship.
+
+No worries, your functions won't brick on May 1. They'll just run unpatched. The September 30 update block is the real cliff, not April 30.
+
+The cheapest time to migrate is before the patch pipeline stops. The second cheapest is never.
+

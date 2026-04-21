@@ -1,0 +1,22 @@
+---
+title: "Claude 4.7 Got Smarter. The Experience Got Harder."
+publishedAt: '2026-04-20'
+summary: "Claude Opus 4.7 dropped from 94.7% to 41.0% on NYT Connections in one release. I moved my work over the day it shipped. Three days later, I had my answer.  "
+---
+
+Claude Opus 4.7 dropped from 94.7% to 41.0% on NYT Connections in one release. I moved my work over the day it shipped. Three days later, I had my answer.  
+  
+MRCR long-context at 1M tokens fell 78.3% to 32.2%. 8-needle retrieval at 256k, 91.9% to 59.2%. Anthropic beat 4.6 on 12 of 14 curated benchmarks. NYT Connections is a third-party puzzle benchmark they don't curate. MRCR is one they're phasing out. I think they shipped a regression and called it a launch.  
+  
+I saw it in the small stuff first. The new tokenizer eats up to 35% more tokens on the same code.  
+Extended thinking is gone, replaced by adaptive thinking. Anthropic made xhigh the default in Claude Code because high was "leaving quality on the table." That's an admission.  
+  
+Then the agent work. I run long Claude Code sessions orchestrating Lambda deployments across a serverless platform. 4.7 started assuming the shape of API instead of reading the actual implementation. Three sub-tasks spawned implementing that imaginary API before I caught it. 4.6 would have opened the file first. 4.7 wants the full map before it moves.  
+  
+It's not only the model. The harness around it keeps cutting into what's left.  
+4.7 does solve problems 4.6 couldn't. Long sessions on hard stuff, it goes further than 4.6 ever did. I now need to detail my prompts more to prevent these problems.  
+  
+The model got smarter. The prompts got longer.  
+  
+Link of the NYT benchmark Github in comment!
+
