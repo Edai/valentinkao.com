@@ -1,0 +1,25 @@
+---
+title: "Vercel Was Breached Because a Dev at Context.ai Downloaded a Roblox Cheat"
+publishedAt: '2026-04-23'
+summary: "Vercel was breached on April 19. Root cause lives further back."
+---
+
+Vercel was breached on April 19. Root cause lives further back.
+
+Someone at Context AI downloaded Roblox auto-farm cheats in February. Lumma Stealer infected their machine. Credentials got harvested. Context AI got compromised. Vercel got compromised through Context AI's OAuth scope into Google Workspace. ShinyHunters wants $2M on BreachForums.
+
+Four layers deep.
+
+1. A Context AI employee's personal laptop running a gaming cheat.
+2. Credentials harvested by an infostealer, sold forward.
+3. Context AI's OAuth scope into Vercel employees' Google Workspace.
+4. Vercel's internal environment.
+  
+Vercel confirmed the env vars flagged sensitive were encrypted and untouched. The encryption held.
+
+Calling this "Vercel's fault" is wrong. Calling it "not your problem" is also wrong. You're in the chain somewhere.
+
+This morning I opened my Google Workspace OAuth grants page. I counted the apps with full Drive access. I revoked the ones I don't use anymore.
+
+Do the same today.
+

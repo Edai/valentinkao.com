@@ -40,6 +40,14 @@ function extractTweetIds(content) {
   return tweetMatches?.map((tweet) => tweet.match(/[0-9]+/g)[0]) || [];
 }
 
+function todayYMD(): string {
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = String(now.getMonth() + 1).padStart(2, '0');
+  const d = String(now.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
 function getMDXData(dir) {
   let mdxFiles = getMDXFiles(dir);
   return mdxFiles
@@ -56,9 +64,7 @@ function getMDXData(dir) {
     })
     .filter((post) => post.metadata.publishedAt !== undefined)
     .filter((post) => post.metadata.publishedAt !== 'YYYY-MM-DD')
-    .filter(
-      (post) => Date.now() - new Date(post.metadata.publishedAt).getTime() > 0,
-    );
+    .filter((post) => post.metadata.publishedAt.slice(0, 10) < todayYMD());
 }
 
 export function getBlogPosts() {
