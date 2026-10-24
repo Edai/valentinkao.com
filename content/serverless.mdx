@@ -1,0 +1,129 @@
+---
+title: 'Serverless Computing for a Modern-Day Development'
+publishedAt: '2023-10-23'
+summary: 'Serverless computing, led by giants like AWS, GCP, and Azure, revolutionizes software development by offering speed, cost-efficiency, and scalability, though with its own set of challenges.'
+---
+
+From Unity3D applications to web development, my software engineering journey has taken some sharp turns, and serverless computing was one of the biggest. At its core, serverless is a cloud model where the provider handles machine resources on-demand and manages servers on behalf of the users.
+
+Historically, managing physical servers or cloud machines was a real chore for developers. Docker made it simpler, but serverless took it a step further: now you just deploy your code to the cloud provider, and that's it.
+
+Google introduced the concept in 2008 with Google App Engine, but Amazon made it mainstream with AWS Lambda in 2014. Soon after, Microsoft and Google followed with their own serverless platforms, simplifying operations and accelerating deployments across the board.
+
+In this article, we'll explore how serverless is reshaping the way we build and deploy applications.
+
+# Accelerate your software development
+
+Serverless architecture changes the development workflow entirely. The process of moving your locally tested code to a live cloud-hosted application has never been simpler: you code your application, package it, and send it to the cloud provider. Once deployed, the provider handles backend operations like load balancing, error handling, and security.
+
+Let's walk through a scenario to make it clearer: a user on your app triggers a POST request. In a serverless setup, this request reaches an API gateway managed by the cloud provider. The provider routes it to a predefined cloud function that executes your code and fulfills the request. With frameworks like AWS SAM, Serverless, or Terraform, this setup becomes incredibly efficient. You can have an API up and running worldwide in as little as five minutes.
+
+This is invaluable during the early stages of development. You can quickly release a lightweight version and enhance it over time. Serverless essentially removes the infrastructure management burden that traditionally slowed developers down. No worrying about server provisioning, maintenance, or scaling. It's all handled for you behind the scenes.
+
+<Image
+  alt="API Gateway Schema"
+  src={`/images/content/serverless/0.png`}
+  width={680}
+  height={430}
+  style={{ margin: '0 auto' }}
+/>
+
+> **Schema from AWS Documentation**: A simple API https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway-tutorial.html
+
+# It's cost efficient
+
+Looking for a way to start a project with no budget and no customers yet? Want to pay more only when you actually have more users? Serverless is built exactly for that. It runs on a "pay as you go" model: the more you use it, the more you pay. You're not stuck paying for monthly servers that sit idle 95% of the time.
+
+This makes it a natural fit for startups or any project with a tight budget that needs scalability. Think of it like a gym: if you only go occasionally, a pay-per-visit model is far more economical than a monthly subscription.
+
+That said, if your project has substantial and steady resource usage, where demand is predictable and you don't expect sudden traffic spikes, a traditional server setup might actually be more cost-effective. In those cases, paying a fixed amount for server resources can be cheaper in the long run compared to the variable costs of serverless computing.
+
+<Image
+  alt="High Computer Use Case 1"
+  src={`/images/content/serverless/1.png`}
+  width={680}
+  height={430}
+  style={{ margin: '0 auto' }}
+/>
+
+<Image
+  alt="High Computer Use Case 2"
+  src={`/images/content/serverless/2.png`}
+  width={680}
+  height={430}
+  style={{ margin: '0 auto' }}
+/>
+
+> If you want a quick comparison, I found on [SimForm Article of AWS Lambda](https://www.simform.com/blog/aws-lambda-pricing/),
+> 2 comparison tables based on the computing usage of your application. https://www.simform.com/blog/aws-lambda-pricing/
+
+# Scalability is seamless
+
+Take UnaConnect, a middleware service I previously worked on. At launch, it supported a few thousand IoT devices. Within two months, that number surged to over 500k without any architecture changes. AWS handled the scaling, the monitoring, and all the backend operations. Serverless inherently scales based on demand, the only limitation being your bank account :)
+
+When scaling does fail for some reason (network issues, for instance), services like AWS Cloudwatch will notify you so the provider can retry afterwards. Pretty remarkable when you think about it.
+
+# Ecosystem and integrations
+
+Today, there are tons of services labeled as serverless. Let me walk you through some of the key offerings across the major cloud providers.
+
+### **Amazon Web Services (AWS)**
+
+AWS is widely credited as a pioneer in the serverless space with AWS Lambda. But Lambda is just the tip of the iceberg. AWS offers a broad range of serverless services designed to integrate seamlessly and cover various application needs:
+
+- **AWS Lambda:** The cornerstone of AWS's serverless offerings. It lets developers run backend code in response to events such as HTTP requests, database changes, or queue messages. It supports multiple runtimes: NodeJS, Python, and more.
+- **AWS DynamoDB:** A NoSQL database service that automatically scales up and down. With its pay-per-read and pay-per-write pricing model, it's a go-to choice for many serverless applications.
+- **AWS SQS/SNS:** This duo makes inter-service communication straightforward. SQS (Simple Queue Service) handles message queuing, ensuring each message is processed at least once. SNS (Simple Notification Service) is ideal for sending notifications or decoupling microservices.
+- **AWS API Gateway:** Deploy and manage RESTful APIs without the hassle. It integrates seamlessly with Lambda, making serverless application setup simple.
+- **AWS AppSync:** A managed GraphQL service that lets developers build flexible APIs for modern application needs.
+- **AWS S3:** Often called the "data lake" of the cloud, S3 is an object storage service, perfect for hosting static websites or storing large amounts of unstructured data.
+- **AWS Kinesis:** Built for real-time data streaming and analytics. From clickstreams to logs, Kinesis can handle massive volumes of data in real-time.
+- **AWS Cloudwatch:** Arguably the most important piece. Monitoring is crucial in the serverless world, and Cloudwatch provides insights into application performance, making debugging and optimization more straightforward.
+
+<Image
+  alt="AWS schema"
+  src={`/images/content/serverless/3.png`}
+  width={680}
+  height={430}
+  style={{ margin: '0 auto' }}
+/>
+
+Example of AWS Serverless Architecture from **A modern approach to implementing
+the serverless Customer Data Platform** by Larry Bell, Brian Maguire, and Lewis Steckler
+
+### **Google Cloud Platform (GCP)**
+
+GCP arrived later to the serverless scene than AWS but has rolled out impressive tools tailored to serverless applications. I haven't used any of them personally, so I did some research for this section.
+
+- **Google App Engine:** A platform-as-a-service (PaaS) offering that lets developers build scalable apps without worrying about infrastructure details.
+- **Cloud Run:** Take a container, deploy it, and let Google handle the scaling. It really is that simple.
+- **Cloud Functions:** GCP's answer to AWS Lambda, enabling event-driven code execution.
+- **FireStore:** A NoSQL database well suited for building real-time applications.
+- **BigQuery:** Focused on analyzing big data. Without any server management, you can run SQL-like queries on vast datasets.
+
+### **Microsoft Azure**
+
+Azure, Microsoft's cloud offering, has its own solid lineup in the serverless space:
+
+- **Azure Functions:** Azure's event-driven compute service, similar to AWS Lambda and GCP's Cloud Functions.
+- **CosmosDB:** A globally distributed, multi-model database service.
+- **Service Bus:** A robust message broker service, great for decoupling applications and services.
+- **Event Hubs:** Azure's real-time data ingestion service, designed for processing large streams of data.
+
+# What are the challenges with Serverless?
+
+Serverless isn't all upside. You'll likely run into some challenges, especially when starting out.
+
+1. **Cold Start:** With AWS Lambda or similar services, when your serverless function hasn't been invoked for a while (or is being invoked for the first time), it needs to "wake up." That initial delay is called a "cold start." It's a bit like starting a car on a chilly morning.
+2. **State Management:** Serverless functions are stateless by design. Managing user sessions or preserving application state across invocations can be tricky. You often need to query the database to retrieve what you need, every time you need it.
+3. **Potential Costs:** Serverless sounds cost-effective, and it often is. But if not monitored, unexpected traffic spikes or prolonged function executions can lead to surprise bills. I also believe that once a team reaches a certain maturity, both technically and in terms of headcount, self-hosting with Docker can become more cost-effective.
+4. **Expensive Bugs:** Mistakes in serverless can be costly, both in terms of function execution and potential data mishandling. Imagine a function stuck in an infinite loop, that can blow up your bill fast. _I still remember an AWS Lambda that kept pushing messages into SQS, retrying on every failure._
+5. **Maintenance:** Serverless doesn't mean maintenance-free. Regular updates and checks are essential to keep everything running smoothly. Cloud providers periodically require you to migrate your code to newer runtimes, which is a bit of a blessing in disguise: it forces you to upgrade that old NodeJS 8.x code to NodeJS 18.x.
+
+# Conclusion
+
+Serverless computing, with its emphasis on speed and cost-efficiency, has reshaped how we build applications. With AWS leading the way and Google and Microsoft close behind, the serverless model's potential is vast.
+
+Having worked with serverless extensively over the past years, I'm genuinely optimistic about its capabilities and its future. Despite the challenges, the advantages in terms of agility and scale are hard to ignore. I know I'll keep reaching for serverless solutions whenever I need a fast, ready-to-deploy system.
+
+That said, understanding its limitations is just as important as appreciating its strengths. I look forward to seeing how it continues to evolve and how it further simplifies the way we build software.

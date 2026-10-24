@@ -1,0 +1,31 @@
+---
+title: "Anthropic's Claude Code Regression Was Never About the Model"
+publishedAt: '2026-04-24'
+summary: "Claude Code felt broken recently. I thought my prompts were the problem. They weren't."
+---
+
+Claude Code felt broken recently. I thought my prompts were the problem. They weren't.
+
+Anthropic just published the postmortem. Three bugs, two in the layer I couldn't see.
+  
+- Bug 1 (March 4): Claude Code's default reasoning effort quietly dropped from high to medium. Reverted April 7.
+
+- Bug 2 (March 26): a thinking cache meant to clear once on idle sessions cleared every turn instead. Claude kept executing tasks while forgetting why it picked them. Fixed April 10, v2.1.101.
+
+- Bug 3 (April 16): a new system prompt capped responses. "Keep text between tool calls to <=25 words. Keep final responses to <=100 words." 3% drop on Anthropic's own eval suite for both Opus 4.6 and 4.7. Reverted April 20.
+ 
+
+The API wasn't affected. Only Claude Code, the Agent SDK, and Cowork.
+
+The model didn't regress. The harness did.
+
+I wrote longer prompts for weeks to work around what I thought was model drift. Half of Reddit said "skill issue." The community was right about the symptom and wrong about the cause, while a 25-word cap shipped quietly in the system prompt.
+
+Monday I wrote "the model got smarter, the prompts got longer." I know why the prompts had to get longer now.
+
+Your LLM vendor ships a model, a prompt, a cache, and a default. The regression lives in whichever one they don't publish.
+
+If you didn't know, Anthropic publishes the claude[dot]ai system prompt, but they don't publish the Claude Code prompt. That created the gap.
+
+Links to the postmortem and the claude[dot]ai prompt in comments.
+

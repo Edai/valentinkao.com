@@ -1,0 +1,28 @@
+---
+title: "@bitwarden/cli Got Compromised at the Publishing Step. The Install Step Is the Wrong Place to Defend."
+publishedAt: '2026-04-29'
+summary: "Three weeks ago I wrote that the real npm attack surface isn't the code, it's the trust. @bitwarden/cli just proved it again."
+---
+
+Three weeks ago I wrote that the real npm attack surface isn't the code, it's the trust. @bitwarden/cli just proved it again.
+
+Version 2026.4.0 published last week with a malicious preinstall hook. ~75,000 weekly downloads. The hook fired on npm install. SSH keys, AWS credentials, kubeconfig and MCP config files, gone in seconds.
+
+The compromise wasn't a developer mistake, and no, this wasn't AI. It was Bitwarden's CI/CD.
+
+Malicious code got injected at the publishing step, not the source.
+
+Prevention isn't the answer. The architecture has to assume an install will get compromised and decide what gets stolen when it does. My pattern:
+
+24 to 48 hour cooldown before adopting any new package version. Bitwarden's malicious release was unpublished in 90 minutes. A two-day wait catches the obvious compromises before they hit your CI.
+
+No long-lived prod keys in ~/.aws/credentials on a dev laptop. Production access goes through IAM Identity Center, temporary SSO tokens only. A preinstall hook steals what the laptop has - keep prod off it.
+
+CI runners authenticate via GitHub OIDC, scoped to the repo and branch. No AWS_ACCESS_KEY_ID in repo secrets. A 1-hour federated token is worth less than a permanent key.
+
+The cost is real. More policies. More CloudFormation churn. Friction when product team asks why permissions for a feature took 2 days when the feature took 1.
+
+Bitwarden has since pulled 2026.4.0. The exfiltrated credentials are still in the wild. Anyone who installed it should rotate everything, not just the obvious secrets.
+ 
+The question isn't whether your next dependency gets compromised. It's whether the dev token that runs your next npm install can authenticate to production. If it can, you don't have a security model. You have a postmortem in your future.
+

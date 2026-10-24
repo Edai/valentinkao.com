@@ -1,0 +1,36 @@
+---
+title: "I Realized at 35,000 Feet That I Can't Code Without an LLM Anymore"
+publishedAt: '2026-04-30'
+summary: "35,000 feet. No wifi. No Claude. Three hours of open laptop, forgetting function signatures, writing unit tests manually. I'd offloaded something I didn't me..."
+---
+
+35,000 feet. No wifi. No Claude. Three hours of open laptop, forgetting function signatures, writing unit tests manually. I'd offloaded something I didn't mean to offload.
+
+I landed and set up a local model before the next flight. Four commands to run an LLM on macOS:
+
+- brew install ollama
+
+- brew services start ollama
+
+- ollama pull qwen2.5-coder:14b
+
+- ollama run qwen2.5-coder:14b --verbose "write a python function to reverse a linked list"
+
+That's it.
+
+Qwen 2.5-Coder 14B, ~9GB on disk, ~12GB RAM loaded, ~20 tok/s on my M3 Pro 18GB. Tokens streaming locally. No API key, no rate limit, no auth round-trip.
+
+Chrome closed. Slack closed. Everything fighting for RAM, closed. 14B on 18GB is the ceiling, not the aspirational pick.
+
+I know Qwen2.5 is old, Qwen3.6-27B dropped about a week ago. It matches Claude Opus on Terminal-Bench 2.0, outscores models 15x its size on SWE-bench. It wants 24GB unified memory. My laptop has 18 :(  
+
+Bridging this into Claude Code is next on my list. claude-code-router translates between Anthropic's Messages API and the OpenAI format Ollama speaks. One env var points Claude Code at localhost.
+
+That's the difference between "I have a local model" and "I can keep shipping on the plane."
+
+18GB is laggy, not livable for serious agentic loops, I believe 32GB is the new floor for local coding that doesn't fight you.
+
+Has anyone tried MLX for Apple M series? Curious how it compares to Ollama on throughput, and whether anyone's bridged it into Claude Code.
+
+Online, the frontier model wins. Offline, the model on my laptop wins.
+

@@ -1,0 +1,18 @@
+---
+title: "AWS Just Made Custom Agent Orchestration Indefensible. Three API Calls."
+publishedAt: '2026-04-28'
+summary: "Last summer I built the orchestration loop for an AI agent. Reasoning. Tool dispatch. Per-turn caps. Streaming. State across turns. AWS Bedrock AgentCore shi..."
+---
+
+Last summer I built the orchestration loop for an AI agent. Reasoning. Tool dispatch. Per-turn caps. Streaming. State across turns. AWS Bedrock AgentCore shipped new features on April 22 and most of that is now an API call.
+
+Define an agent: model, system prompt, tools. The harness runs the loop. Each session gets a microVM with filesystem and shell. Models swap mid-session. Config overrides per invocation, no redeploy. Filesystem persistence lets agents suspend mid-task and resume.
+
+The orchestration was rent I was paying to keep my prompt and my tools connected. The domain logic isn't.
+
+AgentCore is in preview. Four Regions only. APIs will move. The most interesting thing AWS shipped is the export button: you can dump the harness orchestration as Strands code the day you decide to leave. That's the cleanest "we know about lock-in" signal a cloud vendor can publish.
+
+The cheapest agent runtime is the one a cloud vendor maintains. The smartest is the one you can still eject from.
+
+Link in comments.
+
