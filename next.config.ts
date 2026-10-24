@@ -19,6 +19,16 @@ const nextConfig = {
       },
     ];
   },
+  redirects() {
+    return [
+      {
+        // NFC tag target: never cached by phones, so the destination can change without rewriting the tag
+        source: '/hi',
+        destination: 'https://www.linkedin.com/in/valentinkao/',
+        permanent: false,
+      },
+    ];
+  },
 };
 
 const ContentSecurityPolicy = `
