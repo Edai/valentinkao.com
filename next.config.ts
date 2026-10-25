@@ -5,7 +5,7 @@ export const sql = postgres(process.env.POSTGRES_URL!, {
 });
 
 // Flip per event: decides where the NFC tag (/hi) sends people
-const hiRedirectsToInstagram = true;
+const hiRedirectsToInstagram = false;
 
 const nextConfig = {
   logging: {
