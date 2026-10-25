@@ -4,6 +4,9 @@ export const sql = postgres(process.env.POSTGRES_URL!, {
   ssl: 'allow',
 });
 
+// Flip per event: decides where the NFC tag (/hi) sends people
+const hiRedirectsToInstagram = true;
+
 const nextConfig = {
   logging: {
     fetches: {
@@ -24,7 +27,9 @@ const nextConfig = {
       {
         // NFC tag target: never cached by phones, so the destination can change without rewriting the tag
         source: '/hi',
-        destination: 'https://www.linkedin.com/in/valentinkao/',
+        destination: hiRedirectsToInstagram
+          ? 'https://www.instagram.com/valentin.kao/'
+          : 'https://www.linkedin.com/in/valentinkao/',
         permanent: false,
       },
     ];
